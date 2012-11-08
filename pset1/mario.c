@@ -12,7 +12,7 @@ int main(void)
 	do {
 		printf("Height: ");
 		pyramid_height = GetInt();
-	} while (pyramid_height < 1 || pyramid_height > 24);
+	} while (pyramid_height < 3 || pyramid_height > 23);
 	
 	/*
 		The outer loop handles the count of rows to print as well as the
