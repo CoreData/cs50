@@ -1,13 +1,18 @@
 #include <stdio.h>
 #include <cs50.h>
+#include <math.h>
 
 int main(void) 
 {
-    int change = 0;
+    float change = 0;
     
-    printf("Change: ");
-    change = GetInt();
-    
-    printf("Change: $%d\n", change);
+    do 
+    {
+        printf("Change: ");
+        change = GetFloat();
+    }
+    while(change <= 0);
+
+    printf("Change: %d\n", (int)round(change*100));
     return 0;
 }
