@@ -7,7 +7,7 @@ int main(void)
 	int pyramid_height = 0;
 	int i = 0;
 	int j = 0;
-    int spaces = 0;
+    int k = 0;
 	
 	// Grab user input, check it and ask for retry if not within bounds  
 	do {
@@ -28,8 +28,8 @@ int main(void)
 	*/ 
 	for(i = 0; i < pyramid_height; i++) 
 	{
-		// Print as many spaces as defined by the value of second parameter.
-        for(int k = 0; k < pyramid_height-1; k++)
+		// Print the required spaces
+        for(k = 0; k < pyramid_height-i-1; k++)
         {
             printf("%s", " ");
         }
