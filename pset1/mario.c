@@ -10,10 +10,14 @@ int main(void)
 	
 	// Grab user input, check it and ask for retry if not within bounds  
 	do {
-		printf("Height: ");
+		printf("Height:");
 		pyramid_height = GetInt();
-	} while (pyramid_height < 3 || pyramid_height > 23);
-	
+        if (pyramid_height == 0)
+        {
+            return 0;
+        }
+	} while (pyramid_height < 1 || pyramid_height > 23 || pyramid_height == 0);
+
 	/*
 		The outer loop handles the count of rows to print as well as the
 		count of spaces to be printed in front of the hashes.
@@ -24,7 +28,12 @@ int main(void)
 	for(i = 0; i < pyramid_height; i++) 
 	{
 		// Print as many spaces as defined by the value of second parameter.
-		printf("%*s", pyramid_height-i, " ");
+
+        if(pyramid_height != 1)
+        {
+            printf("%*s", pyramid_height-i-1, " ");
+        }
+
 		for(j = 0; j < i+2; j++)
 		{
 			printf("#");
