@@ -7,6 +7,7 @@ int main(void)
 	int pyramid_height = 0;
 	int i = 0;
 	int j = 0;
+    int spaces = 0;
 	
 	// Grab user input, check it and ask for retry if not within bounds  
 	do {
@@ -16,7 +17,7 @@ int main(void)
         {
             return 0;
         }
-	} while (pyramid_height < 1 || pyramid_height > 23 || pyramid_height == 0);
+	} while (pyramid_height < 1 || pyramid_height > 23);
 
 	/*
 		The outer loop handles the count of rows to print as well as the
@@ -28,12 +29,11 @@ int main(void)
 	for(i = 0; i < pyramid_height; i++) 
 	{
 		// Print as many spaces as defined by the value of second parameter.
-
-        if(pyramid_height != 1)
+        for(int k = 0; k < pyramid_height-1; k++)
         {
-            printf("%*s", pyramid_height-i-1, " ");
+            printf("%s", " ");
         }
-
+        // Print the '#' character.
 		for(j = 0; j < i+2; j++)
 		{
 			printf("#");
