@@ -5,9 +5,6 @@ int main(void)
 {
 	// Declare and intialize variables
 	int pyramid_height = 0;
-	int i = 0;
-	int j = 0;
-    int k = 0;
 	
 	// Grab user input, check it and ask for retry if not within bounds  
 	do {
@@ -20,21 +17,21 @@ int main(void)
 	} while (pyramid_height < 1 || pyramid_height > 23);
 
 	/*
-		The outer loop handles the count of rows to print as well as the
-		count of spaces to be printed in front of the hashes.
-		The inner loop is responsible for printing the correct number of 
-		hashes. It takes the value of the loop counter form the outer loop
+		The outer loop handles the count of rows to print.
+		The inner loops are responsible for printing the correct number of 
+		spaces and hashes. The first of the two inner loop handles spaces
+        It takes the value of the loop counter form the outer loop
 		plus 2 as border value since we starting the pyramid with 2 blocks;
 	*/ 
-	for(i = 0; i < pyramid_height; i++) 
+	for(int i = 0; i < pyramid_height; i++) 
 	{
 		// Print the required spaces
-        for(k = 0; k < pyramid_height-i-1; k++)
+        for(int j = 0; j < pyramid_height-i-1; j++)
         {
             printf("%s", " ");
         }
         // Print the '#' character.
-		for(j = 0; j < i+2; j++)
+		for(int k = 0; k < i+2; k++)
 		{
 			printf("#");
 		}
