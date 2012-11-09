@@ -34,7 +34,7 @@ int main(void)
     }
     while(given_amount <= 0);
 
-    // Given amount is convert to cent
+    // Given amount is convert to cents
     cent_amount = (int)round(given_amount*100);
 
     // Quarters
