@@ -1,3 +1,12 @@
+/*
+    greedy.c
+    
+    Author: Chris Anders, chris@hell-labs.de
+    
+    This file is a solution of the greedy algorithm problem from
+    pset1 of CS50.
+*/
+
 #include <stdio.h>
 #include <cs50.h>
 #include <math.h>
