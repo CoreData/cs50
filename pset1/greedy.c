@@ -52,7 +52,9 @@ int main(void)
     // Leftover at this stage is pennies
     coin_count = quarter_count + dime_count + nickel_count + leftover;
     
+    // Pretty print
     // printf("You get %d coins: %d quarters, %d dimes, %d nickels and %d pennies.\n", coin_count, quarter_count, dime_count, nickel_count, leftover);
+    
     //Required output:
     printf("%d\n", coin_count);
     
