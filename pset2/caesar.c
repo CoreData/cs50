@@ -47,7 +47,7 @@ int main(int argc, string argv[])
                 printf("%c", ((((text[i] - 65)+key)%26)+65));
             }
         }
-        else// (isspace(text[i]) || isdigit(text[i]) || ispunct(text[i]))
+        else
         {
             printf("%c", text[i]);
         }
