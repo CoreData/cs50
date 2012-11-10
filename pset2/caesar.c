@@ -27,7 +27,6 @@ int main(int argc, string argv[])
         }
         else
         {
-            // printf("Your valid input is here: %s\n", argv[1]);
             key = atoi(argv[1]);
             keySuccessful = true;
         }
@@ -45,25 +44,11 @@ int main(int argc, string argv[])
         {
             if(islower(text[i]))
             {
-                if(text[i] + key > 122)
-                {
-                    printf("%c", 97 + (key - (123 - text[i])));
-                }
-                else
-                {
-                    printf("%c", text[i] + key);
-                }
+                printf("%c", ((((text[i] - 97)+key)%26)+97));
             }
             else if(isupper(text[i]))
             {
-                if(text[i] + key > 90)
-                {
-                    printf("%c", 65 + (key - (91 - text[i])));
-                }
-                else
-                {
-                    printf("%c", text[i] + key);
-                }
+                printf("%c", ((((text[i] - 65)+key)%26)+65));
             }
         }
     }
