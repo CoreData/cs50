@@ -23,7 +23,7 @@ int main(int argc, string argv[])
         {
             printf("You didn't submit a valid encryption key.\n");
             printf("Please check your input and re-run the programm.\n");
-            return -1;
+            return 1;
         }
         else
         {
