@@ -36,11 +36,7 @@ int main(int argc, string argv[])
     input_length = strlen(text);
     for(int i = 0; i < input_length; i++)
     {
-        if(isspace(text[i]) || isdigit(text[i]) || ispunct(text[i]))
-        {
-            printf("%c", text[i]);
-        }
-        else
+        if(isalpha(text[i]))
         {
             if(islower(text[i]))
             {
@@ -50,6 +46,10 @@ int main(int argc, string argv[])
             {
                 printf("%c", ((((text[i] - 65)+key)%26)+65));
             }
+        }
+        else// (isspace(text[i]) || isdigit(text[i]) || ispunct(text[i]))
+        {
+            printf("%c", text[i]);
         }
     }
     printf("\n");
