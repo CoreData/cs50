@@ -42,11 +42,26 @@ int main(int argc, string argv[])
         }
         else
         {
-            if(isupper(text[i]))
+            if(islower(text[i]))
             {
                 if(text[i] + key > 122)
                 {
                     printf("%c", 97 + (key - (123 - text[i])));
+                }
+                else
+                {
+                    printf("%c", text[i] + key);
+                }
+            }
+            else if(isupper(text[i]))
+            {
+                if(text[i] + key > 90)
+                {
+                    printf("%c", 65 + (key - (91 - text[i])));
+                }
+                else
+                {
+                    printf("%c", text[i] + key);
                 }
             }
         }
