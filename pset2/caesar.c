@@ -14,7 +14,8 @@ int main(int argc, string argv[])
     bool keySuccessful = false;
     int key = 0;
     int input_length = 0;
-    string text = "Be sure to drink your Ovaltine!";
+    // string text = "Be sure to drink your Ovaltine!";
+    string text = "";
     
     do
     {
@@ -32,7 +33,7 @@ int main(int argc, string argv[])
         }
     } while(!keySuccessful);
     
-    // text = GetString();
+    text = GetString();
     input_length = strlen(text);
     for(int i = 0; i < input_length; i++)
     {
