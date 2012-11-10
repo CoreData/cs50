@@ -6,12 +6,46 @@
         
 #include <stdio.h>
 #include <cs50.h>
-        
+#include <string.h>
+#include <ctype.h>
+                        
 int main(int argc, string argv[])
 {
-    for(int i = 0; i < argc; i++)
+    bool keySuccessful = false;
+    int key = 0;
+    int input_length = 0;
+    string text = "Be sure to drink your Ovaltine!";
+    
+    do
     {
-        printf("%s\n", argv[i]);
+        if(argc != 2)
+        {
+            printf("You didn't submit a valid encryption key.\n");
+            printf("Please check your input and re-run the programm.\n");
+            return -1;
+        }
+        else
+        {
+            // printf("Your valid input is here: %s\n", argv[1]);
+            key = atoi(argv[1]);
+            keySuccessful = true;
+        }
+    } while(!keySuccessful);
+    
+    // text = GetString();
+    input_length = strlen(text);
+    for(int i = 0; i < input_length; i++)
+    {
+        if(isspace(text[i]) || isdigit(text[i]) || ispunct(text[i]))
+        {
+            printf("%c", text[i]);
+        }
+        else
+        {
+            printf("%c", text[i] + key);
+
+        }
     }
+    printf("\n");
     return 0;  
 }
