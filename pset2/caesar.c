@@ -24,7 +24,7 @@ int main(int argc, string argv[])
         {
             printf("You didn't submit a valid encryption key.\n");
             printf("Please check your input and re-run the programm.\n");
-            printf("We require an integer as encryption key.");
+            printf("We require an integer as encryption key.\n");
             return 1;
         }
         else
