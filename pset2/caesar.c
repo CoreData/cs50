@@ -48,7 +48,7 @@ int main(int argc, string argv[])
             {
                 printf("%c", ((((text[i] - 97)+key)%26)+97));
             }
-            // Work upper lower case characters
+            // Work with upper case characters
             else
             {
                 printf("%c", ((((text[i] - 65)+key)%26)+65));
@@ -60,7 +60,7 @@ int main(int argc, string argv[])
             printf("%c", text[i]);
         }
     }
-    // Be a good citizen and exit. 
+    // Be a good citizen and exit cleanly. 
     printf("\n");
     return 0;  
 }
