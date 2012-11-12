@@ -3,6 +3,8 @@
 #include <cs50.h>
 #include <ctype.h>
 
+char caesar(char token, int key);
+
 int main(int argc, string argv[]) {
 
     // Variable declarations
@@ -10,6 +12,10 @@ int main(int argc, string argv[]) {
     string keyword = "";
     int keylength = 0;
     string keyword_upper = "";
+    string cipher_text = "";
+    int cipher_length;
+    int key_count = 0;
+
     do
     {
         // The number of command line args submitted was incorrect. 
@@ -48,6 +54,44 @@ int main(int argc, string argv[]) {
         
     printf("\n%s\n", keyword);
     printf("%d\n", keylength);
-    
+
+    cipher_text = GetString();
+    // printf("Your cipher: %s\n", cipher_text);
+    cipher_length = strlen(cipher_text);
+
+    for (int i = 0; i < cipher_length; i++)
+    {
+        if(!isalpha(cipher_text[i]))
+        {
+            printf("%c", cipher_text[i]);
+        }
+        else
+        {
+            printf("%c", caesar(cipher_text[i], keycodes[key_count]));
+
+            if(key_count < keylength)
+            {
+                key_count++;
+            }
+            else
+            {
+                key_count = 0;
+            }
+        }
+    }
+
+    printf("\n");
     return 0;
+}
+
+char caesar(char token, int key)
+{
+    if(islower(token))
+    {
+        return ((((token - 97)+key)%26)+97);
+    }
+    else
+    {
+        return ((((token - 65)  +key)%26)+65);
+    }
 }
