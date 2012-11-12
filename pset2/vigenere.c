@@ -45,18 +45,13 @@ int main(int argc, string argv[]) {
     
     keylength = strlen(keyword);
     int keycodes[keylength];
-    
+
     for(int i = 0; i < keylength;i++)
     {
         keycodes[i] = toupper(keyword[i]) - 65;
-        printf("%d ", keycodes[i]);
     }
-        
-    printf("\n%s\n", keyword);
-    printf("%d\n", keylength);
 
     cipher_text = GetString();
-    // printf("Your cipher: %s\n", cipher_text);
     cipher_length = strlen(cipher_text);
 
     for (int i = 0; i < cipher_length; i++)
@@ -69,7 +64,7 @@ int main(int argc, string argv[]) {
         {
             printf("%c", caesar(cipher_text[i], keycodes[key_count]));
 
-            if(key_count < keylength)
+            if(key_count < keylength - 1)
             {
                 key_count++;
             }
