@@ -1,3 +1,10 @@
+/*
+    Filename: vigenere.c
+    Author: Chris Anders, chris@hell-labs.de
+    
+    This file presents a solution for the vigenere problem in pset2 of CS50x.
+*/
+
 #include <stdio.h>
 #include <string.h>
 #include <cs50.h>
@@ -11,9 +18,8 @@ int main(int argc, string argv[]) {
     bool keySuccessful = false;
     string keyword = "";
     int keylength = 0;
-    string keyword_upper = "";
-    string cipher_text = "";
-    int cipher_length;
+    string user_text = "";
+    int user_text_length;
     int key_count = 0;
 
     do
@@ -31,11 +37,13 @@ int main(int argc, string argv[]) {
             {
                 if(!isalpha(argv[1][i]))
                 {
+                    // We accept only letters as input. 
                     printf("Your input contains illegal characters.\n");
                     return 1;
                 }
                 else
                 {
+                    // All good, input can be accepted as key.
                     keySuccessful = true;
                     keyword = argv[1];
                 }
@@ -43,27 +51,34 @@ int main(int argc, string argv[]) {
         }
     } while(!keySuccessful);
     
+    // We check for the length of the keyword and define an array with that length.
     keylength = strlen(keyword);
     int keycodes[keylength];
 
+    // The letters in the keyword array should be converted to numbers
+    // starting from A = 0 to Z = 25 ignoring case.
     for(int i = 0; i < keylength;i++)
     {
         keycodes[i] = toupper(keyword[i]) - 65;
     }
 
-    cipher_text = GetString();
-    cipher_length = strlen(cipher_text);
+    // Read in user text and calculate its length.
+    user_text = GetString();
+    user_text_length = strlen(user_text);
 
-    for (int i = 0; i < cipher_length; i++)
+    for (int i = 0; i < user_text_length; i++)
     {
-        if(!isalpha(cipher_text[i]))
+        // If input at given position is not letter, just mirror it.
+        if(!isalpha(user_text[i]))
         {
-            printf("%c", cipher_text[i]);
+            printf("%c", user_text[i]);
         }
+        // Process input.
         else
         {
-            printf("%c", caesar(cipher_text[i], keycodes[key_count]));
+            printf("%c", caesar(user_text[i], keycodes[key_count]));
 
+            // Increase the position counter for the keycode array.  
             if(key_count < keylength - 1)
             {
                 key_count++;
@@ -75,10 +90,17 @@ int main(int argc, string argv[]) {
         }
     }
 
+    // Be a nice citizen and exit cleanly.
     printf("\n");
     return 0;
 }
 
+/*
+    This function applies a case-sensitive caeser cipher for a single
+    character using the supplied key.
+    Please note that it provides no input checking!
+    The caller is responsible for this task.
+*/
 char caesar(char token, int key)
 {
     if(islower(token))
