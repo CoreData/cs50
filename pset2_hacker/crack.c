@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// #define _XOPEN_SOURCE
+#define _XOPEN_SOURCE
 #define SALT_LENGTH 2
 #define ASCII_START 65
 #define ASCII_END 126
@@ -51,7 +51,7 @@ int main(int argc, string argv[])
 	    	test = crypt(line, salt);
 	        if(strcmp(argv[1], test) == 0)
 	        {
-	        	printf("%s", line);
+	        	printf("%s\n", line);
 	        	done = true;
 	        	return 0;
 	        	
