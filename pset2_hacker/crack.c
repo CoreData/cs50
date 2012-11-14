@@ -6,12 +6,19 @@
 
 // #define _XOPEN_SOURCE
 #define SALT_LENGTH 2
+#define ASCII_START 65
+#define ASCII_END 126
+
+int permutate(char[2], char*);
+int inc(char *);
+bool done = false;
 
 int main(int argc, string argv[])
 {
 	int argument_length = 0;
 	char salt[2];
 	char * password;
+	char * force;
 	char * test;
 	FILE * wordfile;
 	char * line = NULL;
@@ -29,29 +36,83 @@ int main(int argc, string argv[])
 	password = argv[1] + 2;
 
 	wordfile = fopen("/usr/share/dict/words", "r");
-	// wordfile = fopen("text", "r");
 
     if (wordfile == NULL)
     {
-    	exit(EXIT_FAILURE);
+    	return 2;
     }
 
-    while ((read = getline(&line, &len, wordfile)) != -1) 
+    while(!done)
     {
-    	line[strlen(line) - 1] = 0;
-    	test = crypt(line, salt);
-        if(strcmp(argv[1], test) == 0)
-        {
-        	printf("%s", line);
-        	break;
-        }
-    }
+	    while ((read = getline(&line, &len, wordfile)) != -1) 
+	    {
+	    	line[strlen(line) - 1] = 0;
+	    	printf("Currently @ %s\n", line);
+	    	test = crypt(line, salt);
+	        if(strcmp(argv[1], test) == 0)
+	        {
+	        	printf("%s", line);
+	        	done = true;
+	        	return 0;
+	        	
+	        }
+	    }
 
-    if (line)
-    {
-		free(line);
+	    if (line)
+	    {
+			free(line);
+		}
+		force = argv[1];
+	    permutate(salt, force);
 	}
 
 	printf("\n");
     return 0;
+}
+
+int permutate(char salt[2], char *force)
+{
+    int n = 8;
+    char * test;
+    char * temp;
+
+    char *c = malloc((n+1)*sizeof(char));
+    
+    for(int i = 1; i <= n; i++)
+    {
+        for(int j = 0;j < i; j++)
+        {
+            c[j]='!';
+        }
+        c[i]=0;
+        do 
+        {
+        	printf("Currently @ %s\n", c);
+        	test = crypt(c, salt);
+            if(strcmp(force, test) == 0)
+            {
+            	printf("%s", c);
+            	done = true;
+            	return 0;
+            }
+        } while(inc(c));
+    }
+    free(c);
+    return 0;
+}
+
+int inc(char *c)
+{
+    if(c[0]==0) 
+    {
+        return 0;
+    }
+
+    if(c[0]=='~')
+    {
+        c[0]='!';
+        return inc( c + sizeof(char));
+    }   
+    c[0]++;
+    return 1;
 }
