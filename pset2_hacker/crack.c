@@ -6,8 +6,6 @@
 
 #define _XOPEN_SOURCE
 #define SALT_LENGTH 2
-#define ASCII_START 65
-#define ASCII_END 126
 
 int permutate(char[2], char*);
 int inc(char *);
@@ -15,7 +13,6 @@ bool done = false;
 
 int main(int argc, string argv[])
 {
-	int argument_length = 0;
 	char salt[2];
 	char * password;
 	char * force;
@@ -47,7 +44,7 @@ int main(int argc, string argv[])
 	    while ((read = getline(&line, &len, wordfile)) != -1) 
 	    {
 	    	line[strlen(line) - 1] = 0;
-	    	printf("Currently @ %s\n", line);
+	    	// printf("Currently @ %s\n", line);
 	    	test = crypt(line, salt);
 	        if(strcmp(argv[1], test) == 0)
 	        {
@@ -87,7 +84,7 @@ int permutate(char salt[2], char *force)
         c[i]=0;
         do 
         {
-        	printf("Currently @ %s\n", c);
+        	// printf("Currently @ %s\n", c);
         	test = crypt(c, salt);
             if(strcmp(force, test) == 0)
             {
