@@ -34,7 +34,7 @@
 #define DICTIONARY "words"
 
 // for logging
-FILE* log;
+FILE* mylog;
 
 // grid
 char grid[DIMENSION][DIMENSION];
@@ -115,8 +115,8 @@ int main(int argc, string argv[])
     int end = time(NULL) + DURATION;
 
     // open log
-    log = fopen("log.txt", "w");
-    if (log == NULL)
+    mylog = fopen("log.txt", "w");
+    if (mylog == NULL)
     {
         printf("Could not open log.\n");
         return 1;
@@ -135,8 +135,8 @@ int main(int argc, string argv[])
         for (int row = 0; row < DIMENSION; row++)
         {
             for (int col = 0; col < DIMENSION; col++)
-                fprintf(log, "%c", grid[row][col]);
-            fprintf(log, "\n");
+                fprintf(mylog, "%c", grid[row][col]);
+            fprintf(mylog, "\n");
         }
 
         // get current time
@@ -144,7 +144,7 @@ int main(int argc, string argv[])
 
         // report score
         printf("Score: %d\n", score);
-        fprintf(log, "%d\n", score);
+        fprintf(mylog, "%d\n", score);
 
         // check for game's end
         if (now >= end)
@@ -167,7 +167,7 @@ int main(int argc, string argv[])
             break;
 
         // log word
-        fprintf(log, "%s\n", s);
+        fprintf(mylog, "%s\n", s);
 
         // check whether to scramble grid
         if (strcmp(s, "SCRAMBLE") == 0)
@@ -182,7 +182,7 @@ int main(int argc, string argv[])
     }
 
     // close log
-    fclose(log);
+    fclose(mylog);
 
     return 0;
 }
