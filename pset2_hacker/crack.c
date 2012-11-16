@@ -32,7 +32,13 @@ int main(int argc, string argv[])
 	strncpy(salt, argv[1], SALT_LENGTH);
 	password = argv[1] + 2;
 
-	wordfile = fopen("/usr/share/dict/words", "r");
+	// wordfile = fopen("/usr/share/dict/words", "r");
+    // wordfile = fopen("D8.DIC", "r");
+    // wordfile = fopen("Jargon", "r");
+    // wordfile = fopen("dic-0294.txt", "r");
+    // wordfile = fopen("NORM&R.DIC", "r");
+    // wordfile = fopen("common-passwords.txt", "r");
+    wordfile = fopen("all", "r");
 
     if (wordfile == NULL)
     {
@@ -44,7 +50,7 @@ int main(int argc, string argv[])
 	    while ((read = getline(&line, &len, wordfile)) != -1) 
 	    {
 	    	line[strlen(line) - 1] = 0;
-	    	// printf("Currently @ %s\n", line);
+	    	printf("Currently @ %s\n", line);
 	    	test = crypt(line, salt);
 	        if(strcmp(argv[1], test) == 0)
 	        {
