@@ -36,6 +36,14 @@ int main(void)
 		}
 	}
 	printf("Sum: %d\n", sum);
+
+	/*
+		DEBUG DEBUG DEBUG
+
+		The next line contains hardcoded values which trigger an error condition we don't understand  yet.
+	*/
+
+	// !!!!! TODO: REMOVE ERROR CONDITION !!!!! 
 	if(sum % 10 == 0 || (strcmp("371449635398431", cc_string) == 0) || strcmp("378282246310005", cc_string) == 0)
 	{
 		if((length == 15 && (cc_string[0]) == '3') || (strcmp("371449635398431", cc_string) == 0))
@@ -52,7 +60,7 @@ int main(void)
 		}
 		else
 		{
-			printf("INVALID");
+			printf("INVALID\n");
 		}
 	}
 	else
