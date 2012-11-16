@@ -6,7 +6,6 @@ int main(void)
 {
 	long long cc_number = 0;
 	char cc_string[17];
-	char temp[30];
 	int length = 0;
 	int sum = 0;
 	int temp_value = 0;
