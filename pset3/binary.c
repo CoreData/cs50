@@ -8,16 +8,6 @@ bool search(int needle, int haystack[], int size)
 	int min = 0;
 	int max = size;
 
- //    if((haystack[0] == needle) || (haystack[SIZE - 1] == needle))
-	// {
-	// 	return true;
-	// }
-	
-	// if(size == 0)
-	// {
-	// 	return false;
-	// }
-
 	while(max >= min)
 	{
 		int mid = (max+min)/2;
