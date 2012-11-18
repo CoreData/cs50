@@ -96,7 +96,9 @@ int main(int argc, string argv[])
     // determine path to dictionary
     string directory = dirname(argv[0]);
     char path[strlen(directory) + 1 + strlen(DICTIONARY) + 1];
+    // printf("%s\n", path); 
     sprintf(path, "%s/%s", directory, DICTIONARY);
+    // printf("%s\n", DICTIONARY);
 
     // load dictionary
     if (!load(path))
@@ -104,6 +106,7 @@ int main(int argc, string argv[])
         printf("Could not open dictionary.\n");
         return 1;
     }
+    // printf("%s\n", path);
 
     // initialize the grid
     initialize();
@@ -126,7 +129,7 @@ int main(int argc, string argv[])
     while (true)
     {
         // clear the screen
-        clear();
+        // clear();
 
         // draw the current state of the grid
         draw();
@@ -247,7 +250,16 @@ bool crawl(string letters, int x, int y)
  */
 void draw(void)
 {
-    // TODO
+    printf("\n");
+    for(int row = 0; row < DIMENSION; row++)
+    {
+        for(int col = 0; col < DIMENSION; col++)
+        {
+            printf("%c ", grid[row][col]);
+        }
+        printf("\n");
+    }
+    printf("\n");
 }
 
 /**
