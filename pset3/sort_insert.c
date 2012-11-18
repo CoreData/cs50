@@ -4,7 +4,18 @@
 
 void sort(int array[], int size)
 {
-  // IMPLEMENT
+    for(int i = 2; i < size; i++)
+    {
+        int to_sort = array[i];
+        int j = i;
+
+        while(j > 1 && array[j-1] > to_sort)
+        {
+            array[j] = array[j-1];
+            j--;
+        }
+        array[j] = to_sort;
+    }
 }
 
 int main(void)
