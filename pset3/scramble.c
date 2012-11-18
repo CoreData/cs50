@@ -124,6 +124,8 @@ int main(int argc, string argv[])
         printf("Could not open log.\n");
         return 1;
     }
+
+    printf("%s\n", dictionary.words[0].word);
  
     // accept words until timer expires
     while (true)
