@@ -59,9 +59,6 @@ struct
 }
 dictionary;
 
-bool scrambled = false;
-char temp_grid[DIMENSION][DIMENSION];
-
 // prototypes
 void clear(void);
 bool crawl(string letters, int x, int y);
@@ -121,6 +118,7 @@ int main(int argc, string argv[])
 
     // open log
     mylog = fopen("log.txt", "w");
+
     if (mylog == NULL)
     {
         printf("Could not open log.\n");
@@ -168,11 +166,6 @@ int main(int argc, string argv[])
         // prompt for word
         printf("> ");
         string s = GetString();
-        
-        for(int i = 0, length = strlen(s); i < length; i++)
-        {
-            toupper(s[i]);
-        }
 
         // quit playing if user hits ctrl-d
         if (s == NULL)
@@ -180,6 +173,11 @@ int main(int argc, string argv[])
 
         // log word
         fprintf(mylog, "%s\n", s);
+
+        for(int i = 0, length = strlen(s); i < length; i++)
+        {
+            toupper(s[i]);
+        }
 
         // check whether to scramble grid
         if (strcmp(s, "SCRAMBLE") == 0)
@@ -204,8 +202,8 @@ int main(int argc, string argv[])
  */
 void clear()
 {
-    printf("\033[2J");
-    printf("\033[%d;%dH", 0, 0);
+    // printf("\033[2J");
+    // printf("\033[%d;%dH", 0, 0);
 }
 
 /**
@@ -410,35 +408,30 @@ bool lookup(string s)
  */
 void scramble(void)
 {
-    if(!scrambled)
-    {
-        for(int row = 0; row < DIMENSION; row++)
-        {
-            for(int col = 0; col < DIMENSION; col++)
-            {
-                temp_grid[row][col] = grid[row][col];
-            }
-        }
+    char temp_grid[DIMENSION][DIMENSION];
 
-        for(int i = 0; i < DIMENSION; i++)
-        {
-            for(int j = (DIMENSION-1); j >=0; j--)
-            {
-                grid[i][(DIMENSION-1)-j] = temp_grid[j][i];
-            }
-        }
-        scrambled = true;
-    }
-    else
+    for(int row = 0; row < DIMENSION; row++)
     {
-        for(int row = 0; row < DIMENSION; row++)
+        for(int col = 0; col < DIMENSION; col++)
         {
-            for(int col = 0; col < DIMENSION; col++)
-            {
-                grid[row][col] = temp_grid[row][col];
-            }
+            temp_grid[row][col] = grid[row][col];
         }
-        scrambled = false;
+    }
+
+    for(int i = 0; i < DIMENSION; i++)
+    {
+        for(int j = (DIMENSION-1); j >=0; j--)
+        {
+            grid[i][(DIMENSION-1)-j] = temp_grid[j][i];
+        }
+    }
+
+    // log board
+    for (int row = 0; row < DIMENSION; row++)
+    {
+        for (int col = 0; col < DIMENSION; col++)
+            fprintf(mylog, "%c", grid[row][col]);
+        fprintf(mylog, "\n");
     }
     draw();
 }
