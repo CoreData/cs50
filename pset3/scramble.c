@@ -129,7 +129,7 @@ int main(int argc, string argv[])
     while (true)
     {
         // clear the screen
-        clear();
+        // clear();
 
         // draw the current state of the grid
         draw();
@@ -184,7 +184,7 @@ int main(int argc, string argv[])
         // or to look for word on grid and in dictionary
         else
         {
-            if (find(s) || lookup(s))
+            if (find(s) && lookup(s))
                 score += strlen(s);
         }
     }
@@ -396,13 +396,20 @@ bool load(string s)
  */
 bool lookup(string s)
 {
-    for(int i = 0; i < dictionary.size; i++)
+    for(int i =0; i < dictionary.size; i++)
     {
-        if(strcmp(s, dictionary.words[i].letters) == true)
+        // printf("Line %d: %s\n", i, dictionary.words[i].letters);
+        if((strcmp(s, dictionary.words[i].letters) == 0) && (dictionary.words[i].found == 0))
         {
+            dictionary.words[i].found = true;
+            // printf("Found @ line %d\n",i);
+            // printf("input: %s\n", s);
+            // printf("dict word: %s\n", dictionary.words[i].letters);
+            // printf("state: %d\n", dictionary.words[i].found);
             return true;
         }
     }
+
     return false;
 }
 
