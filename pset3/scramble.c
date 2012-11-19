@@ -426,12 +426,12 @@ void scramble(void)
         }
     }
 
-    // log board
-    for (int row = 0; row < DIMENSION; row++)
-    {
-        for (int col = 0; col < DIMENSION; col++)
-            fprintf(mylog, "%c", grid[row][col]);
-        fprintf(mylog, "\n");
+    // // log board
+    // for (int row = 0; row < DIMENSION; row++)
+    // {
+    //     for (int col = 0; col < DIMENSION; col++)
+    //         fprintf(mylog, "%c", grid[row][col]);
+    //     fprintf(mylog, "\n");
     }
     draw();
 }
