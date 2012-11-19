@@ -59,6 +59,9 @@ struct
 }
 dictionary;
 
+bool scrambled = false;
+char temp_grid[DIMENSION][DIMENSION];
+
 // prototypes
 void clear(void);
 bool crawl(string letters, int x, int y);
@@ -106,7 +109,6 @@ int main(int argc, string argv[])
         printf("Could not open dictionary.\n");
         return 1;
     }
-    // printf("%s\n", path);
 
     // initialize the grid
     initialize();
@@ -125,13 +127,13 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    printf("%s\n", dictionary.words[0].word);
+    printf("%s\n", dictionary.words[100].letters);
  
     // accept words until timer expires
     while (true)
     {
         // clear the screen
-        // clear();
+        clear();
 
         // draw the current state of the grid
         draw();
@@ -166,6 +168,11 @@ int main(int argc, string argv[])
         // prompt for word
         printf("> ");
         string s = GetString();
+        
+        for(int i = 0, length = strlen(s); i < length; i++)
+        {
+            toupper(s[i]);
+        }
 
         // quit playing if user hits ctrl-d
         if (s == NULL)
@@ -403,5 +410,35 @@ bool lookup(string s)
  */
 void scramble(void)
 {
-    // TODO
+    if(!scrambled)
+    {
+        for(int row = 0; row < DIMENSION; row++)
+        {
+            for(int col = 0; col < DIMENSION; col++)
+            {
+                temp_grid[row][col] = grid[row][col];
+            }
+        }
+
+        for(int i = 0; i < DIMENSION; i++)
+        {
+            for(int j = (DIMENSION-1); j >=0; j--)
+            {
+                grid[i][(DIMENSION-1)-j] = temp_grid[j][i];
+            }
+        }
+        scrambled = true;
+    }
+    else
+    {
+        for(int row = 0; row < DIMENSION; row++)
+        {
+            for(int col = 0; col < DIMENSION; col++)
+            {
+                grid[row][col] = temp_grid[row][col];
+            }
+        }
+        scrambled = false;
+    }
+    draw();
 }
