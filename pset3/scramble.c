@@ -432,6 +432,6 @@ void scramble(void)
     //     for (int col = 0; col < DIMENSION; col++)
     //         fprintf(mylog, "%c", grid[row][col]);
     //     fprintf(mylog, "\n");
-    }
+    // }
     draw();
 }
