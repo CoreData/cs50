@@ -124,14 +124,12 @@ int main(int argc, string argv[])
         printf("Could not open log.\n");
         return 1;
     }
-
-    printf("%s\n", dictionary.words[100].letters);
  
     // accept words until timer expires
     while (true)
     {
         // clear the screen
-        clear();
+        // clear();
 
         // draw the current state of the grid
         draw();
@@ -176,7 +174,7 @@ int main(int argc, string argv[])
 
         for(int i = 0, length = strlen(s); i < length; i++)
         {
-            toupper(s[i]);
+            s[i] = toupper(s[i]);
         }
 
         // check whether to scramble grid
@@ -186,7 +184,7 @@ int main(int argc, string argv[])
         // or to look for word on grid and in dictionary
         else
         {
-            if (find(s) && lookup(s))
+            if (find(s) || lookup(s))
                 score += strlen(s);
         }
     }
@@ -398,7 +396,13 @@ bool load(string s)
  */
 bool lookup(string s)
 {
-    // TODO
+    for(int i = 0; i < dictionary.size; i++)
+    {
+        if(strcmp(s, dictionary.words[i].letters) == true)
+        {
+            return true;
+        }
+    }
     return false;
 }
 
