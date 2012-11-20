@@ -481,9 +481,7 @@ int score_word(string s)
 
     for(int i = 0, length = strlen(s); i < length; i++)
     {
-        // printf("%c:%d, ", s[i], letter_scores[(s[i] - 65)]);
         score += letter_scores[(s[i] - 65)];
     }
-    printf("\n");
     return score;
 }
