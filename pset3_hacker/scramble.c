@@ -443,7 +443,7 @@ void scramble(void)
 int score_word(string s)
 {
     /**
-    *   Returns an int value of the score for a string based on the following table:
+    *   Returns a value of the score for a string based on the following table:
     *   A = 1, B = 4, C = 4, D = 2, E = 1, F = 4, G = 3, H = 3, I = 1, J = 10, K = 5,
     *   L = 2, M = 4, N = 2, O = 1, P = 4, Q = 10, R = 1, S = 1, T = 1, U = 2, V = 5,
     *   W = 4, X = 8, Y = 3, Z = 10
@@ -460,14 +460,14 @@ int score_word(string s)
              3,  // g
              3,  // h
              1,  // i
-             10, // j
+            10,  // j
              5,  // k
              2,  // l
              4,  // m
              2,  // n
              1,  // o
              4,  // p
-             10, // q
+            10,  // q
              1,  // r
              1,  // s
              1,  // t
@@ -476,7 +476,7 @@ int score_word(string s)
              4,  // w
              8,  // x
              3,  // y
-             10  // z
+            10   // z
     };
 
     for(int i = 0, length = strlen(s); i < length; i++)
