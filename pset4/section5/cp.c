@@ -1,4 +1,7 @@
+#define LINE_LENGTH 512
+
 #include <stdio.h>
+
 
 int main(int argc, char* argv[])
 {
@@ -13,21 +16,21 @@ int main(int argc, char* argv[])
 
     if(sfile == NULL) 
     {
-    	printf("Problems opening source file!\n");
+    	perror(argv[1]);
     	return 1;
     }
     if(dfile == NULL)
     {
-    	printf("Problems opening destination file!\n");
+    	perror(argv[2]);
     	return 2;
     }
 
     // We should handle this in a dynamic fashion. 
     // Using fgets with a static char array we will f*ck up 
     // when we have a really long line.
-    char line[1024];
+    char line[LINE_LENGTH];
 
-    while(fgets(line, sizeof(line), sfile) != NULL)
+    while(fgets(line, LINE_LENGTH, sfile) != NULL)
     {
     	fprintf(dfile, "%s", line);
     }
