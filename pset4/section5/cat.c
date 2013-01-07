@@ -10,7 +10,23 @@ int main(int argc, char* argv[])
 
     for (int i = 1; i < argc; i++)
     {
-        // TODO: open argv[i] and print its contents to stdout
+        FILE* file = fopen(argv[i], "r");
+
+        if(file == NULL)
+        {
+            perror(argv[i]);
+            return 1;
+        }
+        else
+        {
+            printf("%s:\n", argv[i]);
+            char line[1024];
+            while(fgets(line, 1024, file) != NULL)
+            {
+                printf("%s", line);
+            }
+            printf("\n");
+        }
     }
 
     return 0;
