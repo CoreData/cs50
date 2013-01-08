@@ -1,3 +1,4 @@
+#define LINE_LENGTH 512
 #include <stdio.h>
 
 int main(int argc, char* argv[])
@@ -20,8 +21,8 @@ int main(int argc, char* argv[])
         else
         {
             printf("%s:\n", argv[i]);
-            char line[1024];
-            while(fgets(line, 1024, file) != NULL)
+            char line[LINE_LENGTH];
+            while(fgets(line, LINE_LENGTH, file) != NULL)
             {
                 printf("%s", line);
             }
