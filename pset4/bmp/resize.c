@@ -21,14 +21,15 @@ int main(int argc, char* argv[])
         return 1;
     }
     
-    if(argv[1] < 0 || argv[1] > 100)
+	// Check the resize factor
+	int factor = atoi(argv[1]);
+	if(factor < 0 || factor > 100)
     {
-    	printf("The resize factor should be a positive integer < 100.");
-	return 2;
+    	printf("The resize factor should be a positive integer <= 100.\n");
+		return 2;
     }
 
     // remember filenames and factor 
-    int factor = argv[1];
     char* infile = argv[2];
     char* outfile = argv[3];
 
@@ -66,6 +67,10 @@ int main(int argc, char* argv[])
         fprintf(stderr, "Unsupported file format.\n");
         return 4;
     }
+
+	printf("%d x %d\n", bi.biWidth, bi.biHeight);
+	printf("%d\n", bf.bfSize);
+	printf("%d\n", bf.bfType);
 
     // write outfile's BITMAPFILEHEADER
     fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
