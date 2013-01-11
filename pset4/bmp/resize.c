@@ -68,15 +68,20 @@ int main(int argc, char* argv[])
         return 4;
     }
 
-	printf("%d x %d\n", bi.biWidth, bi.biHeight);
-	printf("%d\n", bf.bfSize);
-	printf("%d\n", bf.bfType);
+	// construct bitmap headers for the outfile
+	BITMAPFILEHEADER out_bf;
+	BITMAPINFOHEADER out_bi;	
+	out_bf = bf;
+	out_bi = bi;
+	out_bf.bfSize = bf.bfSize * factor;
+	out_bi.biWidth = bi.biWidth * factor;
+	out_bi.biHeight = bi.biHeight * factor;
 
     // write outfile's BITMAPFILEHEADER
-    fwrite(&bf, sizeof(BITMAPFILEHEADER), 1, outptr);
+    fwrite(&out_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
 
     // write outfile's BITMAPINFOHEADER
-    fwrite(&bi, sizeof(BITMAPINFOHEADER), 1, outptr);
+    fwrite(&out_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
     int padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
