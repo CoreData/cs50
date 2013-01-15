@@ -26,7 +26,10 @@ int main(void)
 	// These are the starting bytes of a jpeg file.
 	uint8_t checkjpg1[4] = {0xff, 0xd8, 0xff, 0xe0};
 	uint8_t checkjpg2[4] = {0xff, 0xd8, 0xff, 0xe1};
-	int jpgcount = 0;
+
+  // This keeps track of jpeg files found in the bytestream
+  // We use it to create filenames.
+	int jpegcount = 0;
 
 	while(feof(fp) == 0)
 	{
@@ -42,13 +45,19 @@ int main(void)
 
 		if(memcmp(checkjpg1, check, sizeof(checkjpg1) == 0) || (memcmp(checkjpg2, check, sizeof(checkjpg2)) == 0))
 		{
-		  jpgcount++;
+      char * suffix = ".jpeg";
+      char filename[50];
+      sprintf(filename, "%d", jpegcount);
+      strncat(filename, suffix, 5);
+      printf("%s\n", filename);
+		  jpegcount++;
 		}
 	}
-
-
-	printf("%d jpeg files found.\n", jpgcount);
-
+  
+  printf("\n%d JPEG files have been found.\n", jpegcount);
+  // Close any open filehandles. 
+  //
+   
 	// Close cardfile, be a good citizen and exit.
 	fclose(fp);
 	return 0;
