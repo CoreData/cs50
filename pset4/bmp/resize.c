@@ -93,10 +93,6 @@ int main(int argc, char* argv[])
         // Write each line factor-times
         for(int n = 0; n < factor; n++)
         {
-		      printf("####################\n");
-          printf("Reading line %d\n", i); 
-		      printf("ftell: %ld\n", ftell(inptr));
-           
           // iterate over pixels in scanline
           for (int j = 0; j < bi.biWidth; j++)
           {
@@ -105,11 +101,10 @@ int main(int argc, char* argv[])
 
               // read RGB triple from infile
               fread(&triple, sizeof(RGBTRIPLE), 1, inptr);
-              printf("Read:\t\t%d %d %d\n", triple.rgbtRed, triple.rgbtGreen, triple.rgbtBlue);
+               
               // write RGB triple to outfile
               for(int m = 0; m < factor; m++) 
               {
-                printf("Written:\t%d %d %d\n", triple.rgbtRed, triple.rgbtGreen, triple.rgbtBlue);
                 fwrite(&triple, sizeof(RGBTRIPLE), 1, outptr);
               }
           }
@@ -120,8 +115,9 @@ int main(int argc, char* argv[])
           // then add it to outfile
           for (int k = 0; k <out_padding; k++)
               fputc(0x00, outptr);
-		      printf("%d\n", bi.biWidth * 3 );	
+
 		      fseek(inptr, -(bi.biWidth * 3 + in_padding ), SEEK_CUR);
+
         }
 		    fseek(inptr, bi.biWidth*3+in_padding, SEEK_CUR);
     }
