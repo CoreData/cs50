@@ -50,13 +50,14 @@ int main(void)
       sprintf(filename, "%d", jpegcount);
       strncat(filename, suffix, 5);
       printf("%s\n", filename);
+      FILE* outp = fopen(filename, "w");
+      printf("%ld\n", sizeof(buffer));
+      fwrite(&buffer, sizeof(buffer), 1, outp);
 		  jpegcount++;
 		}
 	}
   
   printf("\n%d JPEG files have been found.\n", jpegcount);
-  // Close any open filehandles. 
-  //
    
 	// Close cardfile, be a good citizen and exit.
 	fclose(fp);
