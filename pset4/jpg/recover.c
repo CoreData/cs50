@@ -39,12 +39,13 @@ int main(void)
 		{
 			check[i] = buffer[i];
 		}
-		
-		if(memcmp(checkjpg1, check, sizeof(checkjpg1)) || (memcmp(checkjpg2, check, sizeof(checkjpg2)) == 0))
+
+		if(memcmp(checkjpg1, check, sizeof(checkjpg1) == 0) || (memcmp(checkjpg2, check, sizeof(checkjpg2)) == 0))
 		{
-			jpgcount++;
+		  jpgcount++;
 		}
 	}
+
 
 	printf("%d jpeg files found.\n", jpgcount);
 
