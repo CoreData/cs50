@@ -39,7 +39,7 @@ int main(void)
 	{
 		// Read 512b blocks from file.
 		uint8_t buffer[512];
-		uint8_t check[3];
+		uint8_t check[4];
 		fread(buffer, 512, 1, fp);	
     // Add first four bytes into the check buffer
 		for(int i = 0; i < 4; i++)
@@ -49,7 +49,7 @@ int main(void)
 
     
     // Check for a jpeg signature
-		if(memcmp(checkjpg1, check, sizeof(checkjpg1) == 0) || (memcmp(checkjpg2, check, sizeof(checkjpg2)) == 0))
+		if((memcmp(checkjpg1, check, 4) == 0 ) || (memcmp(checkjpg2, check, sizeof(check)) == 0))
 		{
       if(open == 0)
       {
@@ -81,7 +81,6 @@ int main(void)
       }
     }
 	}
-  
    
 	// Close cardfile, be a good citizen and exit.
 	fclose(fp);
