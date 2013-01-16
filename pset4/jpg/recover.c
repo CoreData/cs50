@@ -31,33 +31,57 @@ int main(void)
   // We use it to create filenames.
 	int jpegcount = 0;
 
+  // Open outfile indicator
+  int open = 0;
+  FILE* outp;
+
 	while(feof(fp) == 0)
 	{
 		// Read 512b blocks from file.
 		uint8_t buffer[512];
 		uint8_t check[3];
 		fread(buffer, 512, 1, fp);	
-		
+    // Add first four bytes into the check buffer
 		for(int i = 0; i < 4; i++)
 		{
 			check[i] = buffer[i];
 		}
 
+    
+    // Check for a jpeg signature
 		if(memcmp(checkjpg1, check, sizeof(checkjpg1) == 0) || (memcmp(checkjpg2, check, sizeof(checkjpg2)) == 0))
 		{
-      char * suffix = ".jpeg";
-      char filename[50];
-      sprintf(filename, "%d", jpegcount);
-      strncat(filename, suffix, 5);
-      printf("%s\n", filename);
-      FILE* outp = fopen(filename, "w");
-      printf("%ld\n", sizeof(buffer));
-      fwrite(&buffer, sizeof(buffer), 1, outp);
-		  jpegcount++;
+      if(open == 0)
+      {
+        char * suffix = ".jpeg";
+        char filename[50];
+        sprintf(filename, "%d", jpegcount);
+        strncat(filename, suffix, 5);
+        outp = fopen(filename, "w");
+        fwrite(buffer, sizeof(buffer), 1, outp);
+        open = 1;
+      }
+      if(open == 1)
+      {
+        fclose(outp);
+        char * suffix = ".jpeg";
+        char filename[50];
+        sprintf(filename, "%d", jpegcount);
+        strncat(filename, suffix, 5);
+        outp = fopen(filename, "w");
+        fwrite(buffer, sizeof(buffer), 1, outp);
+		    jpegcount++;
+      }
 		}
+    else
+    {
+      if(open == 1)
+      {
+        fwrite(buffer, sizeof(buffer), 1, outp);
+      }
+    }
 	}
   
-  printf("\n%d JPEG files have been found.\n", jpegcount);
    
 	// Close cardfile, be a good citizen and exit.
 	fclose(fp);
