@@ -73,9 +73,15 @@ int main(int argc, char* argv[])
 	BITMAPINFOHEADER out_bi;	
 	out_bf = bf;
 	out_bi = bi;
-	out_bf.bfSize = bf.bfSize * factor;
+	// out_bf.bfSize = bf.bfSize * factor;
 	out_bi.biWidth = bi.biWidth * factor;
-	out_bi.biHeight = bi.biHeight * factor;
+	out_bi.biHeight = abs(bi.biHeight * factor);
+  int in_padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+  int out_padding =  (4 - (out_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+  out_bf.bfSize = 54 + out_bi.biWidth * out_bi.biHeight * 3 + out_bi.biWidth * out_padding;
+  printf("%d\n", out_bi.biWidth);
+  printf("%d\n", out_bi.biHeight);
+  printf("%d\n", out_bf.bfSize);
 	
     // write outfile's BITMAPFILEHEADER
     fwrite(&out_bf, sizeof(BITMAPFILEHEADER), 1, outptr);
@@ -84,8 +90,8 @@ int main(int argc, char* argv[])
     fwrite(&out_bi, sizeof(BITMAPINFOHEADER), 1, outptr);
 
     // determine padding for scanlines
-    int in_padding =  (4 - (bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
-    int out_padding =  (4 - (out_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    // int out_padding =  (4 - (out_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
+    // int out_padding =  (4 - (out_bi.biWidth * sizeof(RGBTRIPLE)) % 4) % 4;
 
     // iterate over infile's scanlines
     for (int i = 0, biHeight = abs(bi.biHeight); i < biHeight; i++)
