@@ -29,7 +29,7 @@ int main(void)
 
 		// This keeps track of jpeg files found in the bytestream
 		// We use it to create filenames.
-		int jpegcount = 0;
+		int jpgcount = 0;
 
 		// Open outfile indicator
 		int open = 0;
@@ -52,22 +52,8 @@ int main(void)
 				if((memcmp(checkjpg1, check, 4) == 0 ) || (memcmp(checkjpg2, check, sizeof(check)) == 0))
 				{
 						// Construct the filename
-						char * suffix = ".jpg";
-						char filename[50];
-						if(jpegcount < 10)
-						{
-							sprintf(filename, "00%d", jpegcount);
-						}
-						if(jpegcount > 9 && jpegcount < 100)
-						{
-							sprintf(filename, "0%d", jpegcount);
-						}
-						if(jpegcount > 99)
-						{
-							sprintf(filename, "%d", jpegcount);
-						}
-
-						strncat(filename, suffix, 5);
+						char filename[8];
+						sprintf(filename, "%03d.jpg", jpgcount);
 
 						if(open == 0)
 						{
@@ -80,7 +66,7 @@ int main(void)
 								fclose(outp);
 								outp = fopen(filename, "w");
 								fwrite(buffer, sizeof(buffer), 1, outp);
-								jpegcount++;
+								jpgcount++;
 						}
 				}
 				else
@@ -92,14 +78,6 @@ int main(void)
 				}
 		}
     
-    // Handle last file
-    //if(outp)
-    //{
-    //  fseek(outp, 0L, SEEK_END);
-    //  int size = ftell(outp);
-    //  printf("%d\n", size);
-    //}
-
 		// Close filehandles, be a good citizen and exit.
     if(outp)
     {
