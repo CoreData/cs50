@@ -35,24 +35,23 @@ int main(void)
 		int open = 0;
 		FILE* outp;
 
-		while(feof(fp) == 0)
+	  // Read 512b blocks from file.
+		uint8_t buffer[512];
+		uint8_t check[4];
+		fread(buffer, 512, 1, fp);	
+
+		while(fread(buffer, 512, 1, fp) > 0)
 		{
-				// Read 512b blocks from file.
-				uint8_t buffer[512];
-				uint8_t check[4];
-				fread(buffer, 512, 1, fp);	
 				// Add first four bytes into the check buffer
 				for(int i = 0; i < 4; i++)
 				{
 						check[i] = buffer[i];
 				}
 
-
 				// Check for a jpeg signature
 				if((memcmp(checkjpg1, check, 4) == 0 ) || (memcmp(checkjpg2, check, sizeof(check)) == 0))
 				{
-						// Construct the filename here
-						// TODO: Modify to satisfy filename requirements
+						// Construct the filename
 						char * suffix = ".jpg";
 						char filename[50];
 						if(jpegcount < 10)
@@ -92,8 +91,16 @@ int main(void)
 						}
 				}
 		}
+    
+    // Handle last file
+    //if(outp)
+    //{
+    //  fseek(outp, 0L, SEEK_END);
+    //  int size = ftell(outp);
+    //  printf("%d\n", size);
+    //}
 
-		// Close cardfile, be a good citizen and exit.
+		// Close filehandles, be a good citizen and exit.
     if(outp)
     {
       fclose(outp);
