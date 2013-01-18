@@ -51,12 +51,27 @@ int main(void)
 				// Check for a jpeg signature
 				if((memcmp(checkjpg1, check, 4) == 0 ) || (memcmp(checkjpg2, check, sizeof(check)) == 0))
 				{
+						// Construct the filename here
+						// TODO: Modify to satisfy filename requirements
+						char * suffix = ".jpeg";
+						char filename[50];
+						if(jpegcount < 10)
+						{
+							sprintf(filename, "00%d", jpegcount);
+						}
+						if(jpegcount > 9 && jpegcount < 100)
+						{
+							sprintf(filename, "0%d", jpegcount);
+						}
+						if(jpegcount > 99)
+						{
+							sprintf(filename, "%d", jpegcount);
+						}
+
+						strncat(filename, suffix, 5);
+
 						if(open == 0)
 						{
-								char * suffix = ".jpeg";
-								char filename[50];
-								sprintf(filename, "%d", jpegcount);
-								strncat(filename, suffix, 5);
 								outp = fopen(filename, "w");
 								fwrite(buffer, sizeof(buffer), 1, outp);
 								open = 1;
@@ -64,10 +79,6 @@ int main(void)
 						if(open == 1)
 						{
 								fclose(outp);
-								char * suffix = ".jpeg";
-								char filename[50];
-								sprintf(filename, "%d", jpegcount);
-								strncat(filename, suffix, 5);
 								outp = fopen(filename, "w");
 								fwrite(buffer, sizeof(buffer), 1, outp);
 								jpegcount++;
