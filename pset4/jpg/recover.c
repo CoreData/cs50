@@ -94,6 +94,11 @@ int main(void)
 		}
 
 		// Close cardfile, be a good citizen and exit.
+    if(outp)
+    {
+      fclose(outp);
+    }
+
 		fclose(fp);
 		return 0;
 }
