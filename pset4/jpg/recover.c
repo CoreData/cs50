@@ -53,7 +53,7 @@ int main(void)
 				{
 						// Construct the filename here
 						// TODO: Modify to satisfy filename requirements
-						char * suffix = ".jpeg";
+						char * suffix = ".jpg";
 						char filename[50];
 						if(jpegcount < 10)
 						{
