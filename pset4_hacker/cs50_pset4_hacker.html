@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)https://x.cs50.net/2012/psets/4/hacker4.html -->
+<html style="height: 100%; "><script id="tinyhippos-injected">if (window.top.ripple) { window.top.ripple("bootstrap").inject(window, document); }</script><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <!-- https://gist.github.com/2554919 -->
+        <link href="https://x.cs50.net/github.css" rel="stylesheet">
+
+        <!-- http://pygments.org/media/pygments_style.css -->
+        <link href="https://x.cs50.net/pygments.css" rel="stylesheet">
+
+        <link href="https://x.cs50.net/styles.css" rel="stylesheet">
+
+        <meta name="google-translate-customization" content="83dad8c46b6d7de3-b92d8f963efb3caa-g23dd9b261bcb76f6-d">
+
+        <script src="./cs50_pset4_hacker_files/jquery.min.js"></script>
+        <script src="./cs50_pset4_hacker_files/cs50.analytics.js"></script>
+        <script src="./cs50_pset4_hacker_files/scripts.js"></script>
+
+        <title>This is CS50x.</title>
+
+    <link type="text/css" rel="stylesheet" charset="UTF-8" href="./cs50_pset4_hacker_files/translateelement.css"><script type="text/javascript" charset="UTF-8" src="./cs50_pset4_hacker_files/main_de.js"></script><script type="text/javascript" charset="UTF-8" src="./cs50_pset4_hacker_files/element_main.js"></script></head><style type="text/css"></style><style type="text/css">embed[type*="application/x-shockwave-flash"],embed[src*=".swf"],object[type*="application/x-shockwave-flash"],object[codetype*="application/x-shockwave-flash"],object[src*=".swf"],object[codebase*="swflash.cab"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"],object[classid*="d27cdb6e-ae6d-11cf-96b8-444553540000"],object[classid*="D27CDB6E-AE6D-11cf-96B8-444553540000"]{	display: none !important;}</style>
+    <body style="position: relative; min-height: 100%; top: 0px; ">
+
+      <h1>This is CS50x.</h1>
+
+      <div id="google_translate_element"><div class="skiptranslate goog-te-gadget" dir="ltr" style=""><div id=":0.targetLanguage" style="display: inline; "><select class="goog-te-combo"><option value="">Sprache auswählen</option><option value="de">Deutsch</option><option value="af">Afrikaans</option><option value="sq">Albanisch</option><option value="ar">Arabisch</option><option value="hy">Armenisch</option><option value="az">Aserbaidschanisch</option><option value="eu">Baskisch</option><option value="bn">Bengalisch</option><option value="bg">Bulgarisch</option><option value="zh-TW">Chinesisch (traditionell)</option><option value="zh-CN">Chinesisch (vereinfacht)</option><option value="da">Dänisch</option><option value="eo">Esperanto</option><option value="et">Estnisch</option><option value="fi">Finnisch</option><option value="fr">Französisch</option><option value="gl">Galizisch</option><option value="ka">Georgisch</option><option value="el">Griechisch</option><option value="gu">Gujarati</option><option value="ht">Haitianisch</option><option value="iw">Hebräisch</option><option value="hi">Hindi</option><option value="id">Indonesisch</option><option value="ga">Irisch</option><option value="is">Isländisch</option><option value="it">Italienisch</option><option value="ja">Japanisch</option><option value="yi">Jiddisch</option><option value="kn">Kannada</option><option value="ca">Katalanisch</option><option value="ko">Koreanisch</option><option value="hr">Kroatisch</option><option value="lo">Lao</option><option value="la">Lateinisch</option><option value="lv">Lettisch</option><option value="lt">Litauisch</option><option value="ms">Malaysisch</option><option value="mt">Maltesisch</option><option value="mk">Mazedonisch</option><option value="nl">Niederländisch</option><option value="no">Norwegisch</option><option value="fa">Persisch</option><option value="pl">Polnisch</option><option value="pt">Portugiesisch</option><option value="ro">Rumänisch</option><option value="ru">Russisch</option><option value="sv">Schwedisch</option><option value="sr">Serbisch</option><option value="sk">Slowakisch</option><option value="sl">Slowenisch</option><option value="es">Spanisch</option><option value="sw">Suaheli</option><option value="tl">Tagalog</option><option value="ta">Tamil</option><option value="te">Telugu</option><option value="th">Thailändisch</option><option value="cs">Tschechisch</option><option value="tr">Türkisch</option><option value="uk">Ukrainisch</option><option value="hu">Ungarisch</option><option value="ur">Urdu</option><option value="vi">Vietnamesisch</option><option value="cy">Walisisch</option><option value="be">Weißrussisch</option></select></div>&nbsp;&nbsp;Powered by <span style="white-space:nowrap"><a class="goog-logo-link" href="http://translate.google.com/" target="_blank"><img src="./cs50_pset4_hacker_files/google_logo_41.png" width="37px" height="13px" style="padding-right: 3px">Übersetzer</a></span></div></div><script type="text/javascript">
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, autoDisplay: false, gaTrack: true, gaId: 'UA-8162502-35'}, 'google_translate_element');
+        }
+        </script><script type="text/javascript" src="./cs50_pset4_hacker_files/element.js"></script>
+       
+      <div>
+        <style>
+
+  body {
+      background-attachment: fixed;
+      background-image: url('/hacker.png');
+      background-position: center;
+      background-repeat: no-repeat;
+  }
+
+</style>
+
+<h1 id="toc_221">Problem Set 4: Forensics</h1>
+
+<p><span style="color: red; font-weight: bold">This is the Hacker Edition of Problem Set 4.  It cannot be submitted for credit.</span></p>
+
+<h2 id="toc_222">Objectives.</h2>
+
+<ul>
+<li>  Acquaint you with file I/O.</li>
+<li>  Get you more comfortable with data structures, hexadecimal, and pointers.</li>
+<li>  Introduce you to computer scientists across campus.</li>
+<li>  Help Mr. Boddy.</li>
+</ul>
+
+<h2 id="toc_223">Recommended Reading.*</h2>
+
+<ul>
+<li>  <a href="http://www.cprogramming.com/tutorial/cfileio.html">http://www.cprogramming.com/tutorial/cfileio.html</a></li>
+<li>  Chapters 18, 24, 25, 27, and 28 of <em>Absolute Beginner's Guide to C</em></li>
+<li><p>Chapters 9, 11, 14, and 16 of <em>Programming in C</em></p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/BMP_file_format">http://en.wikipedia.org/wiki/BMP_file_format</a></p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Hexadecimal">http://en.wikipedia.org/wiki/Hexadecimal</a></p></li>
+<li><p><a href="http://en.wikipedia.org/wiki/Jpg">http://en.wikipedia.org/wiki/Jpg</a></p></li>
+</ul>
+
+<p>* The Wikipedia articles are a bit dense; feel free to skim or skip!</p>
+
+<h2 id="toc_224">diff hacker4.pdf hacker4.pdf.</h2>
+
+<ul>
+<li>   Hacker Edition challenges you to implement Hacker Typer.</li>
+<li>   Hacker Edition challenges you to reduce (and enlarge) BMPs.</li>
+</ul>
+
+<h2 id="toc_225">A Section of Questions.</h2>
+
+<p>You're welcome to dive into these questions on your own, but know that they're also explored in <a class="notranslate" href="https://www.edx.org/courses/HarvardX/CS50x/2012/courseware/Week_4/section4/" target="_blank" title="">Week 4's less-comfortable section</a>!  Instead of using CS50 Run or CS50 Spaces for these questions, you'll need to use the CS50 Appliance.</p>
+
+<ul>
+<li><p>Head to </p>
+
+<p><a href="https://www.edx.org/courses/HarvardX/CS50x/2012/courseware/Week_6/shorts6/">https://www.edx.org/courses/HarvardX/CS50x/2012/courseware/Week_6/shorts6/</a></p>
+
+<p>and watch the short on <code class="notranslate">valgrind</code>.  Be prepared to answer the following questions! </p>
+
+<ul>
+<li>  What does <code class="notranslate">valgrind</code> do?</li>
+<li>  How do you use <code class="notranslate">valgrind</code>?</li>
+</ul></li>
+<li><p>Head to </p>
+
+<p><a href="https://www.edx.org/courses/HarvardX/CS50x/2012/courseware/Week_5/shorts5/">https://www.edx.org/courses/HarvardX/CS50x/2012/courseware/Week_5/shorts5/</a></p>
+
+<p>and watch the short on Redirecting &amp; Pipes.  Be prepared to answer the following question! </p>
+
+<ul>
+<li>  To which "stream" do functions like <code class="notranslate">printf</code> write by default?</li>
+<li>  What's the difference between <code class="notranslate">&gt;</code> and <code class="notranslate">&gt;&gt;</code>?</li>
+<li>  What pipeline could you use to find the <u>number</u> of unique names in a file called <code class="notranslate">names.txt</code>?</li>
+</ul></li>
+<li><p>You may also want to re-watch the short on GDB!</p></li>
+<li><p>This section of questions comes with some distribution code that you'll need to download before getting started.  Go ahead and execute</p>
+<div class="notranslate syntax"><pre>cd ~/Dropbox
+</pre></div>
+<p>in order to navigate to your <code class="notranslate">~/Dropbox</code> directory.  Then execute</p>
+<div class="notranslate syntax"><pre>wget http://cdn.cs50.net/2012/fall/sections/6/section5.zip
+</pre></div>
+<p>in order to download a ZIP (i.e., compressed version) of this section's distro.  If you then execute</p>
+<div class="notranslate syntax"><pre>ls
+</pre></div>
+<p>you should see that you now have a file called <code class="notranslate">section5.zip</code> in your <code class="notranslate">~/Dropbox</code> directory.  Unzip it by executing the below.</p>
+<div class="notranslate syntax"><pre>unzip section5.zip
+</pre></div>
+<p>If you again execute</p>
+<div class="notranslate syntax"><pre>ls
+</pre></div>
+<p>you should see that you now also have a <code class="notranslate">section5</code> directory.  You're now welcome to delete the ZIP file with the below.</p>
+<div class="notranslate syntax"><pre>rm -f section5.zip
+</pre></div>
+<p>Now dive into that section5 directory by executing the below.</p>
+<div class="notranslate syntax"><pre>cd section5
+</pre></div>
+<p>Now execute</p>
+<div class="notranslate syntax"><pre>ls
+</pre></div>
+<p>and you should see that the directory contains the below.</p>
+<div class="notranslate syntax"><pre>buggy1    buggy2    buggy3    buggy4    cat.c
+buggy1.c  buggy2.c  buggy3.c  buggy4.c  cp.c
+</pre></div>
+<p>Whereas most of those are source files, <code class="notranslate">buggy1</code>, <code class="notranslate">buggy2</code>, <code class="notranslate">buggy3</code>, and <code class="notranslate">buggy4</code> are binary files that we've compiled for you.  Indeed, if you try opening the files with <code class="notranslate">gedit</code>, you'll see a bunch of binary gobbledygook.  </p></li>
+<li><p>By now, you should know what <code class="notranslate">gdb</code> is, even though you might not fully appreciate it or understand it.  Time to fix!</p>
+
+<p>As those programs' filenames suggest, they're a bit buggy, so your mission is to figure out why using <code class="notranslate">gdb</code>!  Go ahead and execute the below.</p>
+<div class="notranslate syntax"><pre>./buggy1
+</pre></div>
+<p>What happens?  How about <code class="notranslate">buggy2</code>, <code class="notranslate">buggy3</code>, and <code class="notranslate">buggy4</code>?  (Recall that you can force a program to quit with ctrl-c.)   Hm, not so good.  Let's try to debug <code class="notranslate">buggy1</code>.  Go ahead and execute the below.</p>
+<div class="notranslate syntax"><pre>gdb ./buggy1
+</pre></div>
+<p>Next, set a breakpoint at the start of <code class="notranslate">main</code> by executing </p>
+<div class="notranslate syntax"><pre>break main
+</pre></div>
+<p>at <code class="notranslate">gdb</code>'s prompt.  And then execute</p>
+<div class="notranslate syntax"><pre>run
+</pre></div>
+<p>at <code class="notranslate">gdb</code>'s prompt to get <code class="notranslate">buggy1</code> running.  From there, see if you can figure out why <code class="notranslate">buggy1</code> is so buggy.  Odds are you'll find the following commands helpful: <code class="notranslate">r</code>(<code class="notranslate">un</code>), <code class="notranslate">n</code>(<code class="notranslate">ext</code>), <code class="notranslate">p</code>(<code class="notranslate">rint</code>), <code class="notranslate">q</code>(<code class="notranslate">uit</code>), <code class="notranslate">h</code>(<code class="notranslate">elp</code>), <code class="notranslate">bt</code> (<code class="notranslate">backtrace</code>), <code class="notranslate">b</code>(<code class="notranslate">reak</code>), <code class="notranslate">u</code>(<code class="notranslate">p</code>), <code class="notranslate">d</code>(<code class="notranslate">own</code>), and <code class="notranslate">l</code>(<code class="notranslate">ist</code>).</p>
+
+<p>Once you've figured out the source of <code class="notranslate">buggy1</code>'s woes, move on to <code class="notranslate">buggy2</code>, <code class="notranslate">buggy3</code>, and <code class="notranslate">buggy4</code>!</p>
+
+<p>Consider these buggy programs an opportunity to practice with <code class="notranslate">gdb</code>.  No need to fix any bugs; the goal is simply to identify them.  You won't be asked to submit anything for these programs.</p></li>
+<li><p>Ready to wow your friends?  Impress your enemies?  Get ready... and check out the below.</p>
+
+<p><a href="http://hackertyper.net/">http://hackertyper.net</a></p>
+
+<p>Your task is to implement Hacker Typer in C. When you're finished, you should have a binary executable named <code class="notranslate">hacker_typer</code> that takes in a single argument, the file to "hacker-type."  Running the executable should first clear the screen (recall how we did that in Problem Set 3!) and then print out one character from the passed-in file each time the user presses a key.</p>
+
+<p>Check out the <code class="notranslate">stdio</code> library to figure out which function(s) you might want to use.  Keep in mind that many of the functions that return characters actually return values of type <code class="notranslate">int</code> and <strong>not</strong> of type <code class="notranslate">char</code>.</p>
+
+<p>You'll also need to check out the <code class="notranslate">termios</code> library in order to stifle the character "echoes" that you normally get when you type in the terminal, since if your friends see those, they'll know that you're not actually typing out code!  Additionally, the <code class="notranslate">termios</code> library will help you ensure that the <code class="notranslate">stdin</code> stream "flushes" after each key press.</p>
+
+<p>Use the <code class="notranslate">man</code> pages and Google to figure out how best to manage <code class="notranslate">struct termios</code>.  You'll need to use the <code class="notranslate">tcgetattr</code> and <code class="notranslate">tcsetattr</code> functions and mess with the structure's <code class="notranslate">c_lflag</code> and <code class="notranslate">c_cc</code> fields to get the job done.   And remember to save a copy of your "normal" terminal settings to restore before your program exits!</p>
+
+<p>Finally, if you really want a challenge, know that real h4ck3rs will code this using</p>
+<div class="notranslate syntax"><pre>cat - &gt; hacker_typer.c
+</pre></div>
+<p>;-)</p>
+
+<p>Consider this problem an opportunity to practice; you won’t be asked to submit this program.</p></li>
+<li><p>Now that you're a master of reading files, let's add some writing into the mix.  By now, you've probably had to copy a file or two using the <code class="notranslate">cp</code> command.  It turns out that it's not that much more difficult to write now that you've implemented <code class="notranslate">cat</code>.</p>
+
+<p>Go ahead and complete the implementation of <code class="notranslate">cp.c</code>, per the usage instructions therein, where source is the name of the file to be copied, and destination is the filename (or path) for the copy.</p>
+
+<p>As with <code class="notranslate">cat</code>, you'll probably find <code class="notranslate">fgetc</code> (or <code class="notranslate">fread</code>) quite handy for reading!  For writing, however, you'll now want to use <code class="notranslate">fputc</code> instead of <code class="notranslate">putc</code>, though <code class="notranslate">fwrite</code> will still work if using <code class="notranslate">fread</code>.</p>
+
+<p>Thoughts on how best to test your implementation?</p>
+
+<p>Consider this problem an opportunity to practice; you won't be asked to submit this program.</p></li>
+</ul>
+
+<h2 id="toc_226">Getting Started.</h2>
+
+<ul>
+<li><p>Welcome back!</p></li>
+<li><p>Start up your appliance and, upon reaching John Harvard's desktop, open a terminal window (remember how?) and execute</p>
+<div class="notranslate syntax"><pre>update50
+</pre></div>
+<p>to ensure that your appliance is up-to-date!</p></li>
+<li><p>Like Problem Set 3, this problem set comes with some distribution code that you'll need to download before getting started.  Go ahead and execute</p>
+<div class="notranslate syntax"><pre>cd ~/Dropbox
+</pre></div>
+<p>in order to navigate to your <code class="notranslate">~/Dropbox</code> directory.  Then execute</p>
+<div class="notranslate syntax"><pre>wget http://cdn.cs50.net/2012/fall/psets/4/hacker4.zip
+</pre></div>
+<p>in order to download a ZIP (i.e., compressed version) of this problem set's distro.  If you then execute</p>
+<div class="notranslate syntax"><pre>ls
+</pre></div>
+<p>you should see that you now have a file called <code class="notranslate">hacker4.zip</code> in your <code class="notranslate">~/Dropbox</code> directory.  Unzip it by executing the below.</p>
+<div class="notranslate syntax"><pre>unzip hacker4.zip
+</pre></div>
+<p>If you again execute</p>
+<div class="notranslate syntax"><pre>ls
+</pre></div>
+<p>you should see that you now also have a <code class="notranslate">hacker4</code> directory.  You're now welcome to delete the ZIP file with the below.</p>
+<div class="notranslate syntax"><pre>rm -f hacker4.zip
+</pre></div>
+<p>Now dive into that <code class="notranslate">hacker4</code> directory by executing the below.</p>
+<div class="notranslate syntax"><pre>cd hacker4
+</pre></div>
+<p>Now execute</p>
+<div class="notranslate syntax"><pre>ls
+</pre></div>
+<p>and you should see that the directory contains the below.</p>
+<div class="notranslate syntax"><pre>bmp/  jpg/  questions.txt
+</pre></div>
+<p>How fun!  Two subdirectories and a file.  Who knows what could be inside!  Let's get started.</p></li>
+<li><p>If you ever saw Windows XP's default wallpaper (think rolling hills and blue skies), then you've seen a BMP.  If you've ever looked at a webpage, you've probably seen a GIF.  If you've ever looked at a digital photo, you've probably seen a JPEG.  If you've ever taken a screenshot on a Mac, you've probably seen a PNG.  Read up a bit on the BMP, GIF, JPEG, and PNG file formats.   Then, open up <code class="notranslate">questions.txt</code> in <code class="notranslate">~/Dropbox/hacker4</code>, as with <code class="notranslate">gedit</code>, and tell us the below.</p>
+
+<ol start="0">
+    <li>How many different colors does each format support?</li>
+    <li>Which of these formats supports animation?</li>
+    <li>What's the difference between lossy and lossless compression?</li>
+    <li>Which of these formats is lossy-compressed?</li>
+</ol></li>
+<li><p>Curl up with the article from MIT below.</p>
+<div class="notranslate syntax"><pre>http://cdn.cs50.net/2012/fall/psets/4/garfinkel.pdf
+</pre></div>
+<p>Though somewhat technical, you should find the article's language quite accessible.  Once you've read the article, answer each of the following questions in a sentence or more in <code class="notranslate">~/Dropbox/hacker4/questions.txt</code>.</p>
+
+<ol start="4">
+    <li>What happens, technically speaking, when a file is deleted on a FAT file system?</li>
+    <li>What can someone like you do to ensure (with high probability) that files you delete cannot be recovered?</li>
+</ol></li>
+</ul>
+
+<h2 id="toc_227">Whodunit.</h2>
+
+<ul>
+<li><p>Welcome to Tudor Mansion.  Your host, Mr. John Boddy, has met an untimely end—he's the victim of foul play.  To win this game, you must determine <code class="notranslate">whodunit</code>.</p>
+
+<p>Unfortunately for you (though even more unfortunately for Mr. Boddy), the only evidence you have is a 24-bit BMP file called clue.bmp, pictured below, that Mr. Boddy whipped up on his computer in his final moments.   Hidden among this file's red "noise" is a drawing of <code class="notranslate">whodunit</code>.</p>
+
+<p><img src="./cs50_pset4_hacker_files/clue.png" alt="clue.bmp"></p>
+
+<p>You long ago threw away that piece of red plastic from childhood that would solve this mystery for you, and so you must attack it as a computer scientist instead.</p>
+
+<p>But, first, some background.</p></li>
+<li><p>Perhaps the simplest way to represent an image is with a grid of pixels (i.e., dots), each of which can be of a different color.  For black-and-white images, we thus need 1 bit per pixel, as 0 could represent black and 1 could represent white, as in the below.  (Image adapted from <a href="http://www.brackeen.com/vga/bitmaps.html.">http://www.brackeen.com/vga/bitmaps.html.</a>)</p>
+
+<p><img src="./cs50_pset4_hacker_files/grid.png" alt="grid of pixels"> </p>
+
+<p>In this sense, then, is an image just a bitmap (i.e., a map of bits).  For more colorful images, you simply need more bits per pixel.  A file format (like GIF) that supports "8-bit color" uses 8 bits per pixel.  A file format (like BMP, JPEG, or PNG) that supports "24-bit color" uses 24 bits per pixel.  (BMP actually supports 1-, 4-, 8-, 16-, 24-, and 32-bit color.)</p>
+
+<p>A 24-bit BMP like Mr. Boddy's uses 8 bits to signify the amount of red in a pixel's color, 8 bits to signify the amount of green in a pixel's color, and 8 bits to signify the amount of blue in a pixel's color.  If you've ever heard of RGB color, well, there you have it: red, green, blue.</p>
+
+<p>If the R, G, and B values of some pixel in a BMP are, say, 0xff, 0x00, and 0x00 in hexadecimal, that pixel is purely red, as 0xff (otherwise known as 255 in decimal) implies "a lot of red," while 0x00 and 0x00 imply "no green" and "no blue," respectively.  Given how red Mr. Boddy's BMP is, it clearly has a lot of pixels with those RGB values.  But it also has a few with other values.</p>
+
+<p>Incidentally, HTML and CSS (languages in which webpages can be written) model colors in this same way.  If curious, see the URL below for more details.</p>
+
+<p><a href="http://en.wikipedia.org/wiki/Web_colors">http://en.wikipedia.org/wiki/Web_colors</a></p>
+
+<p>Now let's get more technical.  Recall that a file is just a sequence of bits, arranged in some fashion.  A 24-bit BMP file, then, is essentially just a sequence of bits, (almost) every 24 of which happen to represent some pixel's color.  But a BMP file also contains some "metadata," information like an image's height and width.  That metadata is stored at the beginning of the file in the form of two data structures generally referred to as "headers" (not to be confused with C's header files).   (Incidentally, these headers have evolved over time.  This problem set only expects that you support version 4.0 (the latest) of Microsoft's BMP format, which debuted with Windows 95.)  The first of these headers, called <code class="notranslate">BITMAPFILEHEADER</code>, is 14 bytes long.  (Recall that 1 byte equals 8 bits.)  The second of these headers, called <code class="notranslate">BITMAPINFOHEADER</code>, is 40 bytes long.  Immediately following these headers is the actual bitmap: an array of bytes, triples of which represent a pixel's color.   (In 1-, 4-, and 16-bit BMPs, but not 24- or 32-, there's an additional header right after <code class="notranslate">BITMAPINFOHEADER</code> called <code class="notranslate">RGBQUAD</code>, an array that defines "intensity values" for each of the colors in a device's palette.)  However, BMP stores these triples backwards (i.e., as BGR), with 8 bits for blue, followed by 8 bits for green, followed by 8 bits for red.   (Some BMPs also store the entire bitmap backwards, with an image's top row at the end of the BMP file.  But we've stored this problem set's BMPs as described herein, with each bitmap's top row first and bottom row last.)  In other words, were we to convert the 1-bit smiley above to a 24-bit smiley, substituting red for black, a 24-bit BMP would store this bitmap as follows, where <code class="notranslate">0000ff</code> signifies red and <code class="notranslate">ffffff</code> signifies white; we've highlighted in red all instances of <code class="notranslate">0000ff</code>.</p>
+
+<div style="font-family: monospace; white-space: pre;">
+ffffff  ffffff  <span style="color: red;">0000ff</span>  <span style="color: red;">0000ff</span>  <span style="color: red;">0000ff</span>  <span style="color: red;">0000ff</span>  ffffff  ffffff
+ffffff  <span style="color: red;">0000ff</span>  ffffff  ffffff  ffffff  ffffff  <span style="color: red;">0000ff</span>  ffffff
+<span style="color: red;">0000ff</span>  ffffff  <span style="color: red;">0000ff</span>  ffffff  ffffff  <span style="color: red;">0000ff</span>  ffffff  <span style="color: red;">0000ff</span>
+<span style="color: red;">0000ff</span>  ffffff  ffffff  ffffff  ffffff  ffffff  ffffff  <span style="color: red;">0000ff</span>
+<span style="color: red;">0000ff</span>  ffffff  <span style="color: red;">0000ff</span>  ffffff  ffffff  <span style="color: red;">0000ff</span>  ffffff  <span style="color: red;">0000ff</span>
+<span style="color: red;">0000ff</span>  ffffff  ffffff  <span style="color: red;">0000ff</span>  <span style="color: red;">0000ff</span>  ffffff  ffffff  <span style="color: red;">0000ff</span>
+ffffff  <span style="color: red;">0000ff</span>  ffffff  ffffff  ffffff  ffffff  <span style="color: red;">0000ff</span>  ffffff
+ffffff  ffffff  <span style="color: red;">0000ff</span>  <span style="color: red;">0000ff</span>  <span style="color: red;">0000ff</span>  <span style="color: red;">0000ff</span>  ffffff  ffffff
+</div>
+
+<p>Because we've presented these bits from left to right, top to bottom, in 8 columns, you can actually see the red smiley if you take a step back.</p>
+
+<p>To be clear, recall that a hexadecimal digit represents 4 bits.  Accordingly, <code class="notranslate">ffffff</code> in hexadecimal actually signifies <code class="notranslate">111111111111111111111111</code> in binary.</p>
+
+<p>Okay, stop!  Don't proceed further until you're sure you understand why <code class="notranslate">0000ff</code> represents a red pixel in a 24-bit BMP file.</p></li>
+<li><p>Okay, let's transition from theory to practice.  Double-click <strong>Home</strong> on John Harvard's desktop and you should find yourself in John Harvard's home directory.  Double-click <strong>hacker4</strong>, double-click bmp, and then double-click <strong>smiley.bmp</strong> therein.  You should see a tiny smiley face that's only 8 pixels by 8 pixels.  Select <strong>View &gt; Zoom &gt; Zoom Fit</strong>, and you should see a larger, albeit blurrier, version.  (So much for "enhance," huh?)  Actually, this particular image shouldn't really be blurry, even when enlarged.  The program that launched when you double-clicked <strong>smiley.bmp</strong> (called Ristretto Image Viewer) is simply trying to be helpful (CSI-style) by "dithering" the image (i.e., by smoothing out its edges).  Below's what the smiley looks like if you zoom in without dithering.  At this zoom level, you can really see the image's pixels (as big squares).</p>
+
+<p><img src="./cs50_pset4_hacker_files/smiley.png" alt="smiley.png"> </p>
+
+<p>Okay, go ahead and return your attention to a terminal window, and navigate your way to <code class="notranslate">~/Dropbox/hacker4/bmp</code>.  (Remember how?)  Let's look at the underlying bytes that compose <code class="notranslate">smiley.bmp</code> using <code class="notranslate">xxd</code>, a command-line "hex editor."  Execute:</p>
+<div class="notranslate syntax"><pre>xxd -c 24 -g 3 -s 54 smiley.bmp
+</pre></div>
+<p>You should see the below; we've again highlighted in red all instances of 0000ff.</p>
+
+<div style="font-family: monospace; white-space: pre;">
+0000036: ffffff ffffff <span style="color: red;">0000ff</span> <span style="color: red;">0000ff</span> <span style="color: red;">0000ff</span> <span style="color: red;">0000ff</span> ffffff ffffff  ........................
+000004e: ffffff <span style="color: red;">0000ff</span> ffffff ffffff ffffff ffffff <span style="color: red;">0000ff</span> ffffff  ........................
+0000066: <span style="color: red;">0000ff</span> ffffff <span style="color: red;">0000ff</span> ffffff ffffff <span style="color: red;">0000ff</span> ffffff <span style="color: red;">0000ff</span>  ........................
+000007e: <span style="color: red;">0000ff</span> ffffff ffffff ffffff ffffff ffffff ffffff <span style="color: red;">0000ff</span>  ........................
+0000096: <span style="color: red;">0000ff</span> ffffff <span style="color: red;">0000ff</span> ffffff ffffff <span style="color: red;">0000ff</span> ffffff <span style="color: red;">0000ff</span>  ........................
+00000ae: <span style="color: red;">0000ff</span> ffffff ffffff <span style="color: red;">0000ff</span> <span style="color: red;">0000ff</span> ffffff ffffff <span style="color: red;">0000ff</span>  ........................
+00000c6: ffffff <span style="color: red;">0000ff</span> ffffff ffffff ffffff ffffff <span style="color: red;">0000ff</span> ffffff  ........................
+00000de: ffffff ffffff <span style="color: red;">0000ff</span> <span style="color: red;">0000ff</span> <span style="color: red;">0000ff</span> <span style="color: red;">0000ff</span> ffffff ffffff  ........................
+</div>
+
+<p>In the leftmost column above are addresses within the file or, equivalently, offsets from the file's first byte, all of them given in hex.  Note that <code class="notranslate">00000036</code> in hexadecimal is <code class="notranslate">54</code> in decimal.  You're thus looking at byte <code class="notranslate">54</code> onward of <code class="notranslate">smiley.gif</code>.  Recall that a 24-bit BMP's first 14 + 40 = 54 bytes are filled with metadata.  If you really want to see that metadata in addition to the bitmap, execute the command below.</p>
+<div class="notranslate syntax"><pre>xxd -c 24 -g 3 smiley.bmp
+</pre></div>
+<p>If <code class="notranslate">smiley.bmp</code> actually contained ASCII characters, you'd see them in <code class="notranslate">xxd</code>'s rightmost column instead of all of those dots.</p></li>
+<li><p>So, <code class="notranslate">smiley.bmp</code> is 8 pixels wide by 8 pixels tall, and it's a 24-bit BMP (each of whose pixels is represented with 24 ÷ 8 = 3 bytes).  Each row (aka "scanline") thus takes up (8 pixels) × (3 bytes per pixel) = 24 bytes, which happens to be a multiple of 4.  It turns out that BMPs are stored a bit differently if the number of bytes in a scanline is not, in fact, a multiple of 4.  In <code class="notranslate">small.bmp</code>, for instance, is another 24-bit BMP, a green box that's 3 pixels wide by 3 pixels wide.  If you view it with Ristretto Image Viewer (as by double-clicking it), you'll see that it resembles the below, albeit much smaller.  (Indeed,  you might need to zoom in again to see it.)</p>
+
+<p><img src="./cs50_pset4_hacker_files/small.png" alt="small.png"> </p>
+
+<p>Each scanline in <code class="notranslate">small.bmp</code> thus takes up (3 pixels) ×(3 bytes per pixel) = 9 bytes, which is not a multiple of 4.  And so the scanline is "padded" with as many zeroes as it takes to extend the scanline's length to a multiple of 4.  In other words, between 0 and 3 bytes of padding are needed for each scanline in a 24-bit BMP.  (Understand why?)  In the case of small.bmp, 3 bytes' worth of zeroes are needed, since (3 pixels) × (3 bytes per pixel) + (3 bytes of padding) = 12 bytes, which is indeed a multiple of 4.</p>
+
+<p>To "see" this padding, go ahead and run the below.</p>
+<div class="notranslate syntax"><pre>xxd -c 12 -g 3 -s 54 small.bmp
+</pre></div>
+<p>Note that we're using a different value for <code class="notranslate">-c</code> than we did for <code class="notranslate">smiley.bmp</code> so that <code class="notranslate">xxd</code> outputs only 4 columns this time (3 for the green box and 1 for the padding).  You should see output like the below; we've highlighted in green all instances of <code class="notranslate">00ff00</code>.</p>
+
+<div style="font-family: monospace; white-space: pre;">
+0000036: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> 000000  ............
+0000042: <span style="color: green;">00ff00</span> ffffff <span style="color: green;">00ff00</span> 000000  ............
+000004e: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> 000000  ............
+</div>
+
+<p>For contrast, let's use <code class="notranslate">xxd</code> on <code class="notranslate">large.bmp</code>, which looks identical to <code class="notranslate">small.bmp</code> but, at 12 pixels by 12 pixels, is four times as large.  Go ahead and execute the below; you may need to widen your window to avoid wrapping.</p>
+<div class="notranslate syntax"><pre>xxd -c 36 -g 3 -s 54 large.bmp
+</pre></div>
+<p>You should see output like the below; we've again highlighted in green all instances of <code class="notranslate">00ff00</code></p>
+
+<div style="font-family: monospace; white-space: pre;">
+0000036: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+000005a: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+000007e: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+00000a2: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+00000c6: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> ffffff ffffff ffffff ffffff <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+00000ea: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> ffffff ffffff ffffff ffffff <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+000010e: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> ffffff ffffff ffffff ffffff <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+0000132: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> ffffff ffffff ffffff ffffff <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+0000156: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+000017a: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+000019e: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+00001c2: <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span> <span style="color: green;">00ff00</span>  ....................................
+</div>
+
+<p>Worthy of note is that this BMP lacks padding!  After all, (12 pixels) × (3 bytes per pixel) = 36 bytes is indeed a multiple of 4.</p>
+
+<p>Knowing all this has got to be useful!</p></li>
+<li><p>Okay, <code class="notranslate">xxd</code> only showed you the bytes in these BMPs.  How do we actually get at them programmatically?  Well, in <code class="notranslate">copy.c</code> is a program whose sole purpose in life is to create a copy of a BMP, piece by piece.  Of course, you could just use <code class="notranslate">cp</code> for that.  But <code class="notranslate">cp</code> isn't going to help Mr. Boddy.  Let's hope that <code class="notranslate">copy.c</code> does!</p>
+
+<p>Go ahead and compile <code class="notranslate">copy.c</code> into a program called <code class="notranslate">copy</code> using <code class="notranslate">make</code>.  (Remember how?)  Then execute a command like the below.</p>
+<div class="notranslate syntax"><pre>./copy smiley.bmp copy.bmp
+</pre></div>
+<p>If you then execute ls (with the appropriate switch), you should see that <code class="notranslate">smiley.bmp</code> and <code class="notranslate">copy.bmp</code> are indeed the same size.  Let's double-check that they're actually the same!  Execute the below.</p>
+<div class="notranslate syntax"><pre>diff smiley.bmp copy.bmp
+</pre></div>
+<p>If that command tells you nothing, the files are indeed identical.  (Note that some programs, like Photoshop, include trailing zeroes at the ends of some BMPs.  Our version of <code class="notranslate">copy</code> throws those away, so don't be too worried if you try to copy a BMP that you've downloaded or made only to find that the copy is actually a few bytes smaller than the original.)  Feel free to open both files in Ristretto Image Viewer (as by double-clicking each) to confirm as much visually.  But diff does a byte-by-byte comparison, so its eye is probably sharper than yours!</p>
+
+<p>So how now did that copy get made?  It turns out that <code class="notranslate">copy.c</code> relies on <code class="notranslate">bmp.h</code>.  Let's take a look.  Open up <code class="notranslate">bmp.h</code> (as with <code class="notranslate">gedit</code>), and you'll see actual definitions of those headers we've mentioned, adapted from Microsoft's own implementations thereof.  In addition, that file defines <code class="notranslate">BYTE</code>, <code class="notranslate">DWORD</code>, <code class="notranslate">LONG</code>, and <code class="notranslate">WORD</code>, data types normally found in the world of Win32 (i.e., Windows) programming.  Notice how they're just aliases for primitives with which you are (hopefully) already familiar.  It appears that <code class="notranslate">BITMAPFILEHEADER</code> and <code class="notranslate">BITMAPINFOHEADER</code> make use of these types.  This file also defines a <code class="notranslate">struct</code> called <code class="notranslate">RGBTRIPLE</code> that, quite simply, "encapsulates" three bytes: one blue, one green, and one red (the order, recall, in which we expect to find RGB triples actually on disk).</p>
+
+<p>Why are these <code class="notranslate">struct</code>s useful?  Well, recall that a file is just a sequence of bytes (or, ultimately, bits) on disk.  But those bytes are generally ordered in such a way that the first few represent something, the next few represent something else, and so on.  "File formats" exist because the world has standardized what bytes mean what.  Now, we could just read a file from disk into RAM as one big array of bytes.  And we could just remember that the byte at location <code class="notranslate">[i]</code> represents one thing, while the byte at location <code class="notranslate">[j]</code> represents another.  But why not give some of those bytes names so that we can retrieve them from memory more easily?  That's precisely what the <code class="notranslate">struct</code>s in <code class="notranslate">bmp.h</code> allow us to do.  Rather than think of some file as one long sequence of bytes, we can instead think of it as a sequence of <code class="notranslate">struct</code>s.</p>
+
+<p>Recall that <code class="notranslate">smiley.bmp</code> is 8 by 8 pixels, and so it should take up 14 + 40 + 8 ⋅ 8 ⋅ 3 = 246 bytes on disk.  (Confirm as much if you'd like using <code class="notranslate">ls</code>.)  Here's what it thus looks like on disk according to Microsoft:</p>
+
+<p><img src="./cs50_pset4_hacker_files/disk.png" alt="smiley.bmp on disk"> </p>
+
+<p>As this figure suggests, order does matter when it comes to <code class="notranslate">struct</code>s' members.  Byte 57 is <code class="notranslate">rgbtBlue</code> (and not, say, <code class="notranslate">rgbtRed</code>), because <code class="notranslate">rgbtBlue</code> is defined first in <code class="notranslate">RGBTRIPLE</code>.  Our use, incidentally, of the <code class="notranslate">__attribute__</code> called <code class="notranslate">__packed__</code> ensures that <code class="notranslate">clang</code> does not try to "word-align" members (whereby the address of each member's first byte is a multiple of 4), lest we end up with "gaps" in our <code class="notranslate">struct</code>s that don't actually exist on disk. </p>
+
+<p>Now go ahead and pull up the URLs to which <code class="notranslate">BITMAPFILEHEADER</code> and <code class="notranslate">BITMAPINFOHEADER</code> are attributed, per the comments in <code class="notranslate">bmp.h</code>.  You're about to start using MSDN (Microsoft Developer Network)!</p>
+
+<p>Rather than hold your hand further on a stroll through <code class="notranslate">copy.c</code>, we're instead going to ask you some questions and let you teach yourself how the code therein works.  As always, <code class="notranslate">man</code> is your friend, and so, now, is MSDN.  If not sure on first glance how to answer some question, do some quick research and figure it out!  You might want to turn to the below resource as well.</p>
+
+<p><a href="http://www.cs50.net/resources/cppreference.com/stdio/">http://www.cs50.net/resources/cppreference.com/stdio/</a></p>
+
+<p>Allow us to suggest that you also run <code class="notranslate">copy</code> within <code class="notranslate">gdb</code> while answering these questions.  Set a breakpoint at <code class="notranslate">main</code> and walk through the program.  Recall that you can tell <code class="notranslate">gdb</code> to start running the program with a command like the below at <code class="notranslate">gdb</code>'s prompt.</p>
+<div class="notranslate syntax"><pre>run smiley.bmp copy.bmp
+</pre></div>
+<p>If you tell <code class="notranslate">gdb</code> to print the values of <code class="notranslate">bf</code> and <code class="notranslate">bi</code> (once read in from disk), you'll see output like the below, which we daresay you'll find quite useful.</p>
+<div class="notranslate syntax"><pre>{bfType = 19778, bfSize = 246, bfReserved1 = 0, bfReserved2 = 0, 
+  bfOffBits = 54}
+
+{biSize = 40, biWidth = 8, biHeight = -8, biPlanes = 1, biBitCount = 24, 
+  biCompression = 0, biSizeImage = 192, biXPelsPerMeter = 2834, 
+  biYPelsPerMeter = 2834, biClrUsed = 0, biClrImportant = 0}
+</pre></div>
+<p>In <code class="notranslate">~/Dropbox/hacker4/questions.txt</code>, answer each of the following questions in a sentence or more.</p>
+
+<ol start="6">
+    <li>What's <tt>stdint.h</tt>?</li>
+    <li>What's the point of using <tt>uint8_t</tt>, <tt>uint32_t</tt>, <tt>int32_t</tt>, and <tt>uint16_t</tt> in a program?</li>
+    <li>How many bytes is a <tt>BYTE</tt>, a <tt>DWORD</tt>, a <tt>LONG</tt>, and a <tt>WORD</tt>, respectively?  (Assume a 32-bit architecture like the CS50 Appliance.)</li>
+    <li>What (in ASCII, decimal, or hexadecimal) must the first two bytes of any BMP file be?  (Leading bytes used to identify file formats (with high probability) are generally called "magic numbers.)"</li>
+    <li>What's the difference between <tt>bfSize</tt> and <tt>biSize</tt>?</li>
+    <li>What does it mean if <tt>biHeight</tt> is negative?</li>
+    <li>What field in <tt>BITMAPINFOHEADER</tt> specifies the BMP's color depth (i.e., bits per pixel)?</li>
+    <li>Why might <tt>fopen</tt> return <tt>NULL</tt> in <tt>copy.c:37</tt>?</li>
+    <li>Why is the third argument to <tt>fread</tt> always <tt>1</tt> in our code?</li>
+    <li>What value does <tt>copy.c:70</tt> assign padding if <tt>bi.biWidth</tt> is <tt>3</tt>?</li>
+    <li>What does <tt>fseek</tt> do?</li>
+    <li>What is <tt>SEEK_CUR</tt>?</li>
+</ol>
+
+<p>Okay, back to Mr. Boddy.</p></li>
+<li><p>Write a program called <code class="notranslate">whodunit</code> in a file called <code class="notranslate">whodunit.c</code> that reveals Mr. Boddy's drawing.  </p>
+
+<p>Ummm, what?</p>
+
+<p>Well, think back to childhood when you held that piece of red plastic over similarly hidden messages.   (If you remember no such piece of plastic, best to ask a classmate about his or her childhood.)  Essentially, the plastic turned everything red but somehow revealed those messages.  Implement that same idea in <code class="notranslate">whodunit</code>.  Like <code class="notranslate">copy</code>, your program should accept exactly two command-line arguments.  And if you execute a command like the below, stored in <code class="notranslate">verdict.bmp</code> should be a BMP in which Mr. Boddy's drawing is no longer covered with noise.</p>
+<div class="notranslate syntax"><pre>./whodunit clue.bmp verdict.bmp
+</pre></div>
+<p>Allow us to suggest that you begin tackling this mystery by executing the command below.</p>
+<div class="notranslate syntax"><pre>cp copy.c whodunit.c
+</pre></div>
+<p>Wink wink.  You may be amazed by how few lines of code you actually need to write in order to help Mr. Boddy.</p>
+
+<p>There's nothing hidden in <code class="notranslate">smiley.bmp</code>, but feel free to test your program out on its pixels nonetheless, if only because that BMP is small and you can thus compare it and your own program's output with <code class="notranslate">xxd</code> during development.  (Or maybe there is a message hidden in <code class="notranslate">smiley.bmp</code> too.  No, there's not.)</p>
+
+<p>Rest assured that more than one solution is possible.  So long as Mr. Boddy's drawing is identifiable (by you), no matter its color(s), Mr. Boddy will rest in peace.</p>
+
+<p>Because <code class="notranslate">whodunit</code> can be implemented in several ways, you won't be able to check your implementation's correctness with <code class="notranslate">check50</code>.  And, lest it spoil your fun, the staff's solution to <code class="notranslate">whodunit</code> is not available.</p></li>
+<li><p>In <code class="notranslate">~/Dropbox/hacker4/questions.txt</code>, answer the question below.  (And yet we used Photoshop.)</p>
+
+<ol start="18">
+    <li>Whodunit?</li>
+</ol></li>
+<li><p>Well that was fun.  Bit late for Mr. Boddy, though.</p>
+
+<p>Let's have you write more than, what, two lines of code?  Implement now in <code class="notranslate">resize.c</code> a program called resize that resizes 24-bit uncompressed BMPs by a factor of <code class="notranslate">f</code>.  Your program should accept exactly three command-line arguments, per the below usage, whereby the first (<code class="notranslate">f</code>) must be a floating-point value in (0.0, 100.0), the second the name of the file to be resized, and the third the name of the resized version to be written.</p>
+<div class="notranslate syntax"><pre>Usage: resize f infile outfile
+</pre></div>
+<p>With a program like this, we could have created <code class="notranslate">large.bmp</code> out of <code class="notranslate">small.bmp</code> by resizing the latter by a factor of 4.0 (i.e., by multiplying both its width and it s height by 4.0), per the below. </p>
+<div class="notranslate syntax"><pre>./resize 4.0 small.bmp large.bmp
+</pre></div>
+<p>You're welcome to get started by copying (yet again) <code class="notranslate">copy.c</code> and naming the copy <code class="notranslate">resize.c</code>.  But spend some time thinking about what it means to resize a BMP, particularly if <code class="notranslate">f</code> is in (0.0, 1.0).  (You may assume that <code class="notranslate">f</code> times the size of <code class="notranslate">infile</code> will not exceed 2<sup>32</sup> - 1.  As for <code class="notranslate">f = 1.0</code>, the result should indeed be an <code class="notranslate">outfile</code> with dimensions identical to <code class="notranslate">infile</code>'s.)  How you handle floating-point imprecision and rounding is entirely up to you, as is how you handle inevitable loss of detail.  Decide which of the fields in BITMAPFILEHEADER and BITMAPINFOHEADER you might need to modify.  Consider whether or not you'll need to add or subtract padding to scanlines.</p>
+
+<p>If you'd like to check the correctness of your program with <code class="notranslate">check50</code>, you may execute the below.</p>
+<div class="notranslate syntax"><pre>check50 2012/hacker4/resize bmp.h resize.c
+</pre></div>
+<p>And if you'd like to play with the staff's own implementation of <code class="notranslate">resize</code> in the appliance, you may execute the below. </p>
+<div class="notranslate syntax"><pre>~cs50/hacker4/resize
+</pre></div></li>
+</ul>
+
+<h1 id="toc_228">CSI (Computer Science Investigation).</h1>
+
+<ul>
+<li><p>Alright, now let's put all your new skills to the test.</p>
+
+<p>In anticipation of this problem set, I spent the past several days snapping photos of people I know, all of which were saved by my digital camera as JPEGs on a 1GB CompactFlash (CF) card.  (It's possible I actually spent the past several days on Facebook instead.)  Unfortunately, I'm not very good with computers, and I somehow deleted them all!  Thankfully, in the computer world, "deleted" tends not to mean "deleted" so much as "forgotten."  My computer insists that the CF card is now blank, but I'm pretty sure it's lying to me.</p>
+
+<p>Write a program in <code class="notranslate">~/Dropbox/hacker4/jpg</code> called recover that recovers these photos.</p>
+
+<p>Ummm.</p>
+
+<p>Okay, here's the thing.  Even though JPEGs are more complicated than BMPs, JPEGs have "signatures," patterns of bytes that distinguish them from other file formats.  In fact, most JPEGs begin with one of two sequences of bytes.  Specifically, the first four bytes of most JPEGs are either</p>
+<div class="notranslate syntax"><pre>0xff 0xd8 0xff 0xe0
+</pre></div>
+<p>or</p>
+<div class="notranslate syntax"><pre>0xff 0xd8 0xff 0xe1
+</pre></div>
+<p>from first byte to fourth byte, left to right.  Odds are, if you find one of these patterns of bytes on a disk known to store photos (e.g., my CF card), they demark the start of a JPEG.  (To be sure, you might encounter these patterns on some disk purely by chance, so data recovery isn't an exact science.)</p>
+
+<p>Fortunately, digital cameras tend to store photographs contiguously on CF cards, whereby each photo is stored immediately after the previously taken photo.  Accordingly, the start of a JPEG usually demarks the end of another.  However, digital cameras generally initialize CF cards with a FAT file system whose "block size" is 512 bytes (B).  The implication is that these cameras only write to those cards in units of 512 B.  A photo that's 1 MB (i.e., 1,048,576 B) thus takes up 1048576 ÷ 512 = 2048 "blocks" on a CF card.  But so does a photo that's, say, one byte smaller (i.e., 1,048,575 B)!  The wasted space on disk is called "slack space."  Forensic investigators often look at slack space for remnants of suspicious data.</p>
+
+<p>The implication of all these details is that you, the investigator, can probably write a program that iterates over a copy of my CF card, looking for JPEGs' signatures.  Each time you find a signature, you can open a new file for writing and start filling that file with bytes from my CF card, closing that file only once you encounter another signature.  Moreover, rather than read my CF card's bytes one at a time, you can read 512 of them at a time into a buffer for efficiency's sake.  Thanks to FAT, you can trust that JPEGs' signatures will be "block-aligned."  That is, you need only look for those signatures in a block's first four bytes. </p>
+
+<p>Realize, of course, that JPEGs can span contiguous blocks.  Otherwise, no JPEG could be larger than 512 B.  But the last byte of a JPEG might not fall at the very end of a block.  Recall the possibility of slack space.  But not to worry.  Because this CF card was brand-new when I started snapping photos, odds are it'd been "zeroed" (i.e., filled with 0s) by the manufacturer, in which case any slack space will be filled with 0s.  It's okay if those trailing 0s end up in the JPEGs you recover; they should still be viewable.</p>
+
+<p>Now, I only have one CF card, but there are a whole lot of you!  And so I've gone ahead and created a "forensic image" of the card, storing its contents, byte after byte, in a file called <code class="notranslate">card.raw</code>.  So that you don't waste time iterating over millions of 0s unnecessarily, I've only imaged the first few megabytes of the CF card.  But you should ultimately find that the image contains 51 JPEGs.  As usual, you can open the file programmatically with fopen, as in the below.  (It's fine to hard-code this path into your program rather than define it as some constant.)</p>
+<div class="notranslate syntax"><pre><span class="kt">FILE</span><span class="o">*</span> <span class="n">fp</span> <span class="o">=</span> <span class="n">fopen</span><span class="p">(</span><span class="s">"card.raw"</span><span class="p">,</span> <span class="s">"r"</span><span class="p">);</span>
+</pre></div>
+<p>Notice, incidentally, that <code class="notranslate">~/Dropbox/hacker4/jpg</code> contains only <code class="notranslate">recover.c</code>, but it's devoid of any code.  (We leave it to you to decide how to implement and compile recover!)   For simplicity, you should hard-code <code class="notranslate">"card.raw"</code> in your program; your program need not accept any command-line arguments.  When executed, though, your program should recover every one of the JPEGs from card.raw, storing each as a separate file in your current working directory.  Your program should number the files it outputs by naming each <code class="notranslate">###.jpg</code>, where <code class="notranslate">###</code> is three-digit decimal number from <code class="notranslate">000</code> on up.  (Befriend <code class="notranslate">sprintf</code>.)  You need not try to recover the JPEGs' original names.  To check whether the JPEGs your program spit out are correct, simply double-click and take a look!  If each photo appears intact, your operation was likely a success!</p>
+
+<p>Odds are, though, the JPEGs that the first draft of your code spits out won't be correct.  (If you open them up and don't see anything, they're probably not correct!)  Execute the command below to delete all JPEGs in your current working directory.</p>
+<div class="notranslate syntax"><pre>rm *.jpg
+</pre></div>
+<p>If you'd rather not be prompted to confirm each deletion, execute the command below instead.</p>
+<div class="notranslate syntax"><pre>rm -f *.jpg
+</pre></div>
+<p>Just be careful with that <code class="notranslate">-f</code> switch, as it "forces" deletion.</p>
+
+<p>If you'd like to check the correctness of your program with <code class="notranslate">check50</code>, you may execute the below.</p>
+<div class="notranslate syntax"><pre>check50 2012/hacker4/recover recover.c
+</pre></div>
+<p>Lest it spoil your (forensic) fun, the staff's solution to <code class="notranslate">recover</code> is not available.</p></li>
+</ul>
+
+<h2 id="toc_229">Sanity Checks.</h2>
+
+<p>Before you consider this problem set done, best to ask yourself these questions and then go back and improve your code as needed!  Do not consider the below an exhaustive list of expectations, though, just some helpful reminders.  The checkboxes that have come before these represent the exhaustive list!  To be clear, consider the questions below rhetorical.  No need to answer them in writing for us, since all of your answers should be "yes!"</p>
+
+<ul>
+<li>  Did you fill <code class="notranslate">questions.txt</code> with answers to all questions?</li>
+<li>  Is the BMP that <code class="notranslate">whodunit</code> outputs legible (to you)?</li>
+<li>  Does <code class="notranslate">resize</code> accept three and only three command-line arguments?</li>
+<li>  Does <code class="notranslate">resize</code> ensure that <code class="notranslate">f</code> is in (1.0, 100)?</li>
+<li>  Does <code class="notranslate">resize</code> update <code class="notranslate">bfSize</code>, <code class="notranslate">biHeight</code>, <code class="notranslate">biSizeImage</code>, and <code class="notranslate">biWidth</code> correctly?</li>
+<li>  Does <code class="notranslate">resize</code> add or remove padding as needed?</li>
+<li>  Does <code class="notranslate">recover</code> output 51 JPEGs?  Are all 51 viewable?</li>
+<li>  Does <code class="notranslate">recover</code> name the JPEGs <code class="notranslate">###.jpg</code>, where <code class="notranslate">###</code> is a three-digit number from <code class="notranslate">000</code> through <code class="notranslate">050</code>?</li>
+<li>  Are all of your files where they should be in <code class="notranslate">~/Dropbox/hacker4</code>?</li>
+</ul>
+
+<p>As always, if you can't answer "yes" to one or more of the above because you're having some trouble, do drop by office hours or turn to <a class="notranslate" href="https://x.cs50.net/discuss" target="_blank" title="">CS50 Discuss</a>!</p>
+
+      </div><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./cs50_pset4_hacker_files/translate-32.png" width="20" height="20"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Originaltext</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Bessere Übersetzung vorschlagen</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none; "></div></div>
+
+    
+
+</body></html>
