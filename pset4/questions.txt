@@ -4,16 +4,16 @@
 3.  JPEG is an example for a lossy compressed format.
 4.  The reference to the data on the disk are deleted from the file allocation table. 
 5.  Apart from eliminating the reference in the FAT, the actual data on the disk could be overwritten with zeros or random data.
-6.  
-7.  TODO
-8.  TODO
-9.  TODO
-10. TODO
-11. TODO
-12. TODO
-13. TODO
-14. TODO
-15. TODO
-16. TODO
-17. TODO
-18. TODO
+6.  <stdint.h> is a header file declaring various integer types with certain guaranteed widths. 
+7.  Using these types allows to write implementation- and plattform-independent code.
+8.  A BYTE i defined as having 8 bit, DWORD and LONG having 32bit and WORD is defined with 16 bit. 
+9.  Thos bits should read 0x42 0x4d.
+10. bfSize holds the file size of the bitmap file, while biSize is defined as the size of the Bitmapinfoheader structure. 
+11. A negative value for biHeight suggests that the vertical orientation of the image is upside-down.
+12. This is defined in biBitCount.
+13. This can happen if the user running the copy programm has no write permission for the directory she wants to copy the file to.
+14. We want to copy one individual structure per read, e.g. a complete BITMAPINFOHEADER or an individual RGBTRIPLE. 
+15. padding will have a value of 3.
+16. fseek is used to move a position pointer through a file stream.
+17. SEEK_CUR indicates the current position of the position pointer.
+18. Fossie bear is the culprit.
