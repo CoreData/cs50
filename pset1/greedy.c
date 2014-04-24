@@ -31,6 +31,9 @@ int main(void)
     {
         printf("You gave me: ");
         given_amount = GetFloat();
+        //If given amount is zero or less then zero checked
+        if(given_amount == 0||given_amount <= 0)
+        printf("Number Should be greater then Zero EG:10\n:");
     }
     while(given_amount <= 0);
 
