@@ -54,21 +54,27 @@
 
 char GetChar(void)
 {
+    // Declaration always at top.
+    // Performance issues
+    string line;
+    char data;
+    char badc;
+    
     // try to get a char from user
     while (true)
     {
         // get line of text, returning CHAR_MAX on failure
-        string line = GetString();
-        if (line == NULL)
+        line = GetString();
+        
+        if (!line)
             return CHAR_MAX;
 
         // return a char if only a char (possibly with
         // leading and/or trailing whitespace) was provided
-        char c1, c2;
-        if (sscanf(line, " %c %c", &c1, &c2) == 1)
+        if (sscanf(line, " %c %c", &data, &badc) == 1)
         {
             free(line);
-            return c1;
+            return data;
         }
         else
         {
@@ -89,21 +95,24 @@ char GetChar(void)
 
 double GetDouble(void)
 {
+    string line;
+    double data;
+    char badc;
     // try to get a double from user
     while (true)
     {
         // get line of text, returning DBL_MAX on failure
-        string line = GetString();
-        if (line == NULL)
+        line = GetString();
+        
+        if (!line)
             return DBL_MAX;
 
         // return a double if only a double (possibly with
         // leading and/or trailing whitespace) was provided
-        double d; char c;
-        if (sscanf(line, " %lf %c", &d, &c) == 1)
+        if (sscanf(line, " %lf %c", &data, &badc) == 1)
         {
             free(line);
-            return d;
+            return data;
         }
         else
         {
@@ -124,18 +133,22 @@ double GetDouble(void)
 
 float GetFloat(void)
 {
+    string line;
+    float data;
+    char badc;
+    
     // try to get a float from user
     while (true)
     {
         // get line of text, returning FLT_MAX on failure
-        string line = GetString();
-        if (line == NULL)
+        line = GetString();
+        
+        if (!line)
             return FLT_MAX;
 
         // return a float if only a float (possibly with
         // leading and/or trailing whitespace) was provided
-        char c; float f;
-        if (sscanf(line, " %f %c", &f, &c) == 1)
+        if (sscanf(line, " %f %c", &data, &badc) == 1)
         {
             free(line);
             return f;
@@ -159,18 +172,22 @@ float GetFloat(void)
 
 int GetInt(void)
 {
+    string line;
+    int data;
+    char badc;
+    
     // try to get an int from user
     while (true)
     {
         // get line of text, returning INT_MAX on failure
-        string line = GetString();
-        if (line == NULL)
+        line = GetString();
+        
+        if (!line)
             return INT_MAX;
 
         // return an int if only an int (possibly with
         // leading and/or trailing whitespace) was provided
-        int n; char c;
-        if (sscanf(line, " %d %c", &n, &c) == 1)
+        if (sscanf(line, " %d %c", &data, &badc) == 1)
         {
             free(line);
             return n;
@@ -194,18 +211,22 @@ int GetInt(void)
 
 long long GetLongLong(void)
 {
+    string line;
+    long long data;
+    char badc;
+    
     // try to get a long long from user
     while (true)
     {
         // get line of text, returning LLONG_MAX on failure
-        string line = GetString();
-        if (line == NULL)
+        line = GetString();
+        
+        if (!line)
             return LLONG_MAX;
 
         // return a long long if only a long long (possibly with
         // leading and/or trailing whitespace) was provided
-        long long n; char c;
-        if (sscanf(line, " %lld %c", &n, &c) == 1)
+        if (sscanf(line, " %lld %c", &data, &badc) == 1)
         {
             free(line);
             return n;
@@ -237,16 +258,22 @@ string GetString(void)
     unsigned int capacity = 0;
 
     // number of chars actually in buffer
-    unsigned int n = 0;
+    unsigned int size = 0;
 
     // character read or EOF
     int c;
+    
+    // temp string
+    string temp = NULL;
+    
+    // final string
+    string minimal = NULL;
 
     // iteratively get chars from standard input
     while ((c = fgetc(stdin)) != '\n' && c != EOF)
     {
         // grow buffer if necessary
-        if (n + 1 > capacity)
+        if (size + 1 > capacity)
         {
             // determine new capacity: start at 32 then double
             if (capacity == 0)
@@ -260,30 +287,32 @@ string GetString(void)
             }
 
             // extend buffer's capacity
-            string temp = realloc(buffer, capacity * sizeof(char));
-            if (temp == NULL)
+            temp = realloc(buffer, capacity * sizeof(char));
+            
+            if (!temp)
             {
                 free(buffer);
                 return NULL;
             }
+            
             buffer = temp;
         }
 
         // append current character to buffer
-        buffer[n++] = c;
+        buffer[size++] = c;
     }
 
     // return NULL if user provided no input
-    if (n == 0 && c == EOF)
+    if (size == 0 && c == EOF)
         return NULL;
 
     // minimize buffer
-    string minimal = malloc((n + 1) * sizeof(char));
-    strncpy(minimal, buffer, n);
+    minimal = malloc((size + 1) * sizeof(char));
+    strncpy(minimal, buffer, size);
     free(buffer);
 
     // terminate string
-    minimal[n] = '\0';
+    minimal[size] = '\0';
 
     // return string
     return minimal;
